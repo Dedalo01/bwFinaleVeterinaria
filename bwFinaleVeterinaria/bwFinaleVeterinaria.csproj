@@ -125,7 +125,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PharmacistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +201,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Api\" />
+    <Folder Include="Views\Auth\" />
+    <Folder Include="Views\Doctor\" />
+    <Folder Include="Views\Pharmacist\" />
     <Folder Include="Views\VeterinariaDb\" />
   </ItemGroup>
   <ItemGroup>
