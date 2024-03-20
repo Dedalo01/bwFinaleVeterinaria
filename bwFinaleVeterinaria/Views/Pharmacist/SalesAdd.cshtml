@@ -1,0 +1,39 @@
+﻿﻿@model bwFinaleVeterinaria.Models.SalesViewModel
+
+@{
+    ViewBag.Title = "Pharmacist Page";
+}
+
+<h2>Inserisci dati ordine</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.ProductId, "Inserisci il Prodotto:")
+        @Html.DropDownListFor(model => model.ProductId, new SelectList(Model.Products, "Id", "Name"), "---", htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.OwnerId, "Inserisci il Proprietario:")
+        @Html.DropDownListFor(model => model.OwnerId, new SelectList(Model.Owners, "Id", "FiscalCode"), "---", htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.ExaminationId, "Inserisci la ricetta del Dottore:")
+        @Html.DropDownListFor(model => model.ExaminationId, new SelectList(Model.Examinations, "Id", "TreatmentDescription"), "---", htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ExaminationId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.SaleDate, "Inserisci la data")
+        @Html.TextBoxFor(model => model.SaleDate, new { @class = "form-control", @type = "datetime-local" })
+        @Html.ValidationMessageFor(model => model.SaleDate, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary my-2">Submit</button>
+
+}

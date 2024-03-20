@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductAddViewModel.cs" />
     <Compile Include="Models\Cabinet.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Drawer.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\SalesViewModel.cs" />
     <Compile Include="Models\RescueAdmission.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -198,13 +200,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Pharmacist\SalesAdd.cshtml" />
+    <Content Include="Views\Pharmacist\ProductsList.cshtml" />
+    <Content Include="Views\Pharmacist\ProductAdd.cshtml" />
+    <Content Include="Views\Pharmacist\CompanyAdd.cshtml" />
+    <Content Include="Views\Pharmacist\CompanyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\Doctor\" />
-    <Folder Include="Views\Pharmacist\" />
     <Folder Include="Views\VeterinariaDb\" />
   </ItemGroup>
   <ItemGroup>

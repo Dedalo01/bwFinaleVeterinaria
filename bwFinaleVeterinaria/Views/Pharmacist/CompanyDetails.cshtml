@@ -1,0 +1,22 @@
+﻿﻿@model bwFinaleVeterinaria.Models.Company
+
+@{
+    ViewBag.Title = "Company Details";
+}
+
+<h2 class="mb-3">@Model.Name</h2>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>Email</th>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>@Model.Address</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary">Torna alla lista prodotti</a>
