@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "AddPet";
+}
+
+@model bwFinaleVeterinaria.Models.Pet
+
+<h2>Aggiungi Animale</h2>
+<p>Cerca il proprietario dell'animale nel Database.</p>
+<p>Se non è presente, aggiungilo</p>
+
+
+<div class="">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="ownerId">Seleziona Proprietario</label>
+            <select name="ownerId" id="ownerId">
+                <option value="-1">--- Seleziona Proprietario ---</option>
+                @foreach (var owner in TempData["owners"] as List<bwFinaleVeterinaria.Models.Owner>)
+                {
+                    <option value="@owner.Id">@owner.Name @owner.Surname | @owner.FiscalCode</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <p>Il proprietario non è presente nel Database?</p>
+            <a href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.Name, "Inserisci Nome dell'Animale:")
+            @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.Type, "Inserisci che tipo di animale sia:")
+            @Html.EditorFor(p => p.Type, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(p => p.Type, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.RegistrationDate, "Inserisci la Data di Registrazione:")
+            @Html.EditorFor(p => p.RegistrationDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+            @Html.ValidationMessageFor(p => p.RegistrationDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.CoatColor, "Inserisci il colore del Manto:")
+            @Html.EditorFor(p => p.CoatColor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(p => p.CoatColor, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.BirthDate, "Inserisci la Data di Nascita:")
+            @Html.EditorFor(p => p.BirthDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+            @Html.ValidationMessageFor(p => p.BirthDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.Microchip, "Inserisci il Codice Microchip (15 caratteri):")
+            @Html.EditorFor(p => p.Microchip, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(p => p.Microchip, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit">Aggiungi Animale</button>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <div>
+            <p>@TempData["Success"]</p>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div>
+            <p>@TempData["Error"]</p>
+        </div>
+    }
+</div>
