@@ -10,11 +10,12 @@ namespace bwFinaleVeterinaria.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Il campo Username è obbligatorio.")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Il campo Password è obbligatorio.")]
         [StringLength(16)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         public int RoleId { get; set; }
