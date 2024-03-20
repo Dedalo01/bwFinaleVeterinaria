@@ -1,0 +1,35 @@
+﻿@model bwFinaleVeterinaria.Models.Product
+
+@using (Html.BeginForm("Search", "Pharmacist", FormMethod.Post, new { id = "searchForm" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, "Nome del Prodotto")
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "productName" })
+    </div>
+    <button type="submit" class="btn btn-primary">Cerca</button>
+}
+
+<div id="productDetails">
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#searchForm').submit(function (e) {
+                e.preventDefault();
+                var productName = $('#productName').val();
+                $.ajax({
+                    url: '@Url.Action("Search", "Pharmacist")',
+                    type: 'POST',
+                    data: { productName: productName },
+                    success: function (result) {
+                        $('#productDetails').html(result);
+                    },
+                    error: function () {
+                        alert('Errore durante la ricerca del prodotto.');
+                    }
+                });
+            });
+        });
+    </script>
+}

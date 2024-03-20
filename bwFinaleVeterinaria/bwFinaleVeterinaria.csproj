@@ -198,13 +198,14 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Pharmacist\Search.cshtml" />
+    <Content Include="Views\Pharmacist\_ProductDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\Doctor\" />
-    <Folder Include="Views\Pharmacist\" />
     <Folder Include="Views\VeterinariaDb\" />
   </ItemGroup>
   <ItemGroup>

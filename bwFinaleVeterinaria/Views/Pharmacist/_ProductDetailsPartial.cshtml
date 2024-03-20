@@ -1,0 +1,27 @@
+﻿@model bwFinaleVeterinaria.Models.Product
+
+<div>
+    <h4>Dettagli Prodotto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Type)</dt>
+        <dd>@Html.DisplayFor(model => model.Type)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PossibleUses)</dt>
+        <dd>@Html.DisplayFor(model => model.PossibleUses)</dd>
+
+        <dt>Cabinet</dt>
+        <dd>
+            @foreach (var cabinet in Model.Cabinets)
+            {
+                <div>
+                    Cabinet: @cabinet.NumericCode
+                    Drawer: @cabinet.Drawer.DrawerNumber
+                </div>
+            }
+        </dd>
+    </dl>
+</div>
