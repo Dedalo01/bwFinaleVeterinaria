@@ -30,9 +30,11 @@ namespace bwFinaleVeterinaria.Controllers
             {
                 db.Owners.Add(owner);
                 db.SaveChanges();
-                return RedirectToAction("Index"); //redirect da controllare se effettivamente vogliamo mandare all'index
+                TempData["Success"] = "Il proprietario è stato aggiunto correttamente.";
+                return RedirectToAction("AddOwner");
             }
 
+            TempData["Fail"] = "Il proprietario NON è stato aggiunto correttamente.";
             return View(owner);
         }
     }
