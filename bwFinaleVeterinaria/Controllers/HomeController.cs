@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bwFinaleVeterinaria.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,27 @@ namespace bwFinaleVeterinaria.Controllers
 {
     public class HomeController : Controller
     {
+        private VeterinariaDbContext db = new VeterinariaDbContext();
+        //Get: Lista ricoveri
         public ActionResult Index()
         {
+            var viewModel = new HomeView
+            {
+                RescueAdmissions = db.RescueAdmissions.ToList(),
+                Employee = new Employee() 
+            };
+
+            return View(viewModel);
+        }
 
 
+        [HttpGet]
+        public ActionResult Ricerca()
+        {
             return View();
         }
+
+
         [Authorize(Roles = "Doctor")]
         public ActionResult Contact()
         {

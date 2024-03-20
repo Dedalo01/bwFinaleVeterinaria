@@ -1,5 +1,4 @@
-﻿@using bwFinaleVeterinaria.Models
-@model Employee
+﻿@model bwFinaleVeterinaria.Models.HomeView
 
 @{
     ViewBag.Title = "Home";
@@ -7,21 +6,57 @@
 
 <h2>Benvenuto!</h2>
 
-@using (Html.BeginForm("Login", "Auth", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+<div class="row">
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Username)
-        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Username)
+    <!-- Tabella -->
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data ammissione</th>
+                    <th>Immagine</th>
+                    <th>ID Animale</th>
+                    <th>Dimissioni</th>
+                    <th>Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RescueAdmissions)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
+                        <td><img src="@item.PetImageUrl" class="img-responsive" alt="@item.PetId" style="max-width: 300px; max-height: 300px;"></td>
+                        <td>@Html.DisplayFor(modelItem => item.PetId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EndAdmissionDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price) €</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Password)
+    <!-- Form di login -->
+    <div class="col-md-4">
+        <h3 class="text-center">Login</h3>
+        @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Employee.Username)
+                @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.Username)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Employee.Password)
+                @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.Password)
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary">Login</button>
+        }
     </div>
 
-    <button type="submit" class="btn btn-default">Login</button>
-}
+
+</div>

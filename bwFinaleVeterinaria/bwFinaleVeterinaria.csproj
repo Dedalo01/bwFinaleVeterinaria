@@ -138,6 +138,7 @@
     <Compile Include="Models\Drawer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Examination.cs" />
+    <Compile Include="Models\HomeView.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\Product.cs" />
