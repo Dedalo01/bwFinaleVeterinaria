@@ -4,59 +4,95 @@
     ViewBag.Title = "Home";
 }
 
-<h2>Benvenuto!</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Benvenuto!</h2>
 
-<div class="row">
+    <div class="row">
 
-    <!-- Tabella -->
-    <div class="col-md-8">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Data ammissione</th>
-                    <th>Immagine</th>
-                    <th>ID Animale</th>
-                    <th>Dimissioni</th>
-                    <th>Prezzo</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.RescueAdmissions)
+        <!-- Tabella Ammissioni -->
+        <div class="col-lg-8 mb-4">
+            <h3 class="mb-3" >Ultimi Ricoveri</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Data ammissione</th>
+                            <th>Immagine</th>
+                            <th>ID Animale</th>
+                            <th>Dimissioni</th>
+                            <th>Prezzo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.RescueAdmissions)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
+                                <td><img src="@item.PetImageUrl" class="img-fluid" alt="Immagine Animale" style="max-width: 300px; max-height: 300px;"></td>
+                                <td>@Html.DisplayFor(modelItem => item.PetId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.EndAdmissionDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Price) €</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Form di Login -->
+        <div class="col-lg-4 mt-5">
+            <div class="border p-4 rounded">
+                <h3 class="text-center mb-4">Login</h3>
+                @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
                 {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
-                        <td><img src="@item.PetImageUrl" class="img-responsive" alt="@item.PetId" style="max-width: 300px; max-height: 300px;"></td>
-                        <td>@Html.DisplayFor(modelItem => item.PetId)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EndAdmissionDate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Price) €</td>
-                    </tr>
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Employee.Username, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Username, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Employee.Password, new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
                 }
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
 
-    <!-- Form di login -->
-    <div class="col-md-4">
-        <h3 class="text-center">Login</h3>
-        @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Employee.Username)
-                @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Employee.Username)
+    <!-- Ricerca per Microchip -->
+    <div class="row mt-4">
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero di microchip" aria-label="Numero di Microchip">
+                <button class="btn btn-outline-secondary" type="button" id="searchButton">Cerca Animale</button>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Employee.Password)
-                @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Employee.Password)
-            </div>
-
-            <button type="submit" class="btn btn-outline-primary">Login</button>
-        }
+        </div>
     </div>
 
-
+    <!-- Info Animale -->
+    <div class="row">
+        <div class="col" id="petInfo" style="display:none;">
+            <div class="card" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="" class="img-fluid rounded-start" id="petImage" alt="Immagine Animale">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Il tuo cucciolo è qui da noi!</h5>
+                            <p class="card-text">Nome: <span id="petName"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
