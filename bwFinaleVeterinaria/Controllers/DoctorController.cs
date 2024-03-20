@@ -68,5 +68,17 @@ namespace bwFinaleVeterinaria.Controllers
             TempData["Fail"] = "La visita NON è stata aggiunta correttamente.";
             return View(exam);
         }
+
+        //chiamata asincrona da spostare in apiController
+        public ActionResult GetAnimalHistory(int petId)
+        {
+            var animal = db.Pets.Include(p => p.Examinations).SingleOrDefault(p => p.Id == petId);
+            if (animal == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView("_AnimalHistoryPartial", animal.Examinations.OrderByDescending(e => e.ExaminationDate));
+        }
     }
 }
