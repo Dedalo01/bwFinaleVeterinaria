@@ -11,7 +11,7 @@
 
         <!-- Tabella Ammissioni -->
         <div class="col-lg-8 mb-4">
-            <h3 class="mb-3" >Ultimi Ricoveri</h3>
+            <h3 class="mb-3">Ultimi Ricoveri</h3>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="table-dark">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <!-- Form di Login -->
+        <!-- Form di Login centrato -->
         <div class="col-lg-4 mt-5">
             <div class="border p-4 rounded">
                 <h3 class="text-center mb-4">Login</h3>
@@ -47,20 +47,20 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="mb-3">
+                    <div class="mb-3 text-center">
                         @Html.LabelFor(m => m.Employee.Username, new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control mx-auto", style = "width: auto;" })
                         @Html.ValidationMessageFor(m => m.Employee.Username, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 text-center">
                         @Html.LabelFor(m => m.Employee.Password, new { @class = "form-label" })
-                        @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control mx-auto", style = "width: auto;" })
                         @Html.ValidationMessageFor(m => m.Employee.Password, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary mx-auto">Login</button>
                     </div>
                 }
             </div>
@@ -96,3 +96,34 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#searchButton").click(function() {
+            var microchip = $("#microchipInput").val();
+            $.ajax({
+                url: '@Url.Action("GetPetByMicrochip", "Api")',
+                type: 'GET',
+                dataType: 'json',
+                data: { microchip: microchip },
+                success: function(data) {
+                    if(data.success) {
+                        $("#petName").text(data.pet.Name);
+                        if(data.pet.AdmissionInfo && data.pet.AdmissionInfo.PetImageUrl) {
+                            $("#petImage").attr("src", data.pet.AdmissionInfo.PetImageUrl);
+                        } else {
+                            $("#petImage").attr("src", "https://media.tenor.com/sxrhvUa9VvQAAAAM/dance-till-you-are-dead-meme.gif");
+                        }
+                        $("#petInfo").show();
+                    } else {
+                        alert("Animale non trovato.");
+                        $("#petInfo").hide();
+                    }
+                },
+                error: function() {
+                    alert("Si è verificato un errore nella ricerca.");
+                }
+            });
+        });
+    });
+</script>

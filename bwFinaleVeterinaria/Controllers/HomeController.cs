@@ -33,16 +33,12 @@ namespace bwFinaleVeterinaria.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Contact()
         {
-
-
             return View();
         }
 
         [Authorize(Roles = "Pharmacist")]
         public ActionResult About()
         {
-
-
             return View();
         }
     }
