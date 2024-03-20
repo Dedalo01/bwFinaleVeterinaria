@@ -24,7 +24,7 @@ namespace bwFinaleVeterinaria.Models
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "Il campo Codice Fiscale è obbligatorio.")]
-        [StringLength(16)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = "Il campo Codice Fiscale deve essere di lunghezza 16.")]
         public string FiscalCode { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
