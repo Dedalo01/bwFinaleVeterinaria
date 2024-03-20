@@ -33,12 +33,14 @@ namespace bwFinaleVeterinaria.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Ruolo non autorizzato.");
+                        TempData["ErrorMessage"] = "Ruolo non autorizzato.";
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Username o password non validi.");
+                    TempData["ErrorMessage"] = "Username o password non validi.";
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return RedirectToAction("Index", "Home", utente);

@@ -7,6 +7,13 @@
 <div class="container mt-5">
     <h2 class="mb-4">Benvenuto!</h2>
 
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"].ToString()
+        </div>
+    }
+
     <div class="row">
 
         <!-- Tabella Ammissioni -->
