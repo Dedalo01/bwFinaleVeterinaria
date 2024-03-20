@@ -21,7 +21,7 @@
         @foreach (var product in Model.Where(p => p.Type == "Alimentare"))
         {
             <tr>
-                <td>@product.Name</td>
+                <td><a href="@Url.Action("ProductDetails", "Pharmacist", new { id = product.Id })">@product.Name</a></td>
                 <td>@product.Type</td>
                 <td>@product.PossibleUses</td>
                 <td><a href="@Url.Action("CompanyDetails", "Pharmacist", new { id = product.CompanyId })">@product.Company.Name</a></td>
@@ -44,7 +44,7 @@
         @foreach (var product in Model.Where(p => p.Type == "Farmaco"))
         {
             <tr>
-                <td>@product.Name</td>
+                <td><a href="@Url.Action("ProductDetails", "Pharmacist", new { id = product.Id })">@product.Name</a></td>
                 <td>@product.Type</td>
                 <td>@product.PossibleUses</td>
                 <td><a href="@Url.Action("CompanyDetails", "Pharmacist", new { id = product.CompanyId })">@product.Company.Name</a></td>

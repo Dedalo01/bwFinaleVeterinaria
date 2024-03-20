@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using bwFinaleVeterinaria.Models;
@@ -125,7 +127,7 @@ namespace bwFinaleVeterinaria.Controllers
             {
                 _db.Companies.Add(company);
                 _db.SaveChanges();
-                return RedirectToAction("Index", "Home"); // Redirect to home page or any other page
+                return RedirectToAction("ProductsList", "Pharmacist"); 
             }
             return View(company);
         }
@@ -138,6 +140,30 @@ namespace bwFinaleVeterinaria.Controllers
                 return HttpNotFound();
             }
             return View(company);
+        }
+  
+        public async Task<ActionResult> ProductDetails(int id)
+        {
+            var medicine = await _db.Products
+                .Include(p => p.Cabinets.Select(c => c.Drawer))
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (medicine == null)
+            {
+                return HttpNotFound(); 
+            }
+
+            return View("ProductDetails", medicine);
+
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
