@@ -25,6 +25,15 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Informazioni", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contatto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            @using (Html.BeginForm("Logout", "Auth", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a>
+                            }
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

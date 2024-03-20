@@ -25,7 +25,7 @@ namespace bwFinaleVeterinaria.Controllers
 
                     if (user.RoleId == 1)
                     {
-                        return RedirectToAction("Index","Doctor");
+                        return RedirectToAction("Contact","Home");
                     }
                     else if (user.RoleId == 2)
                     {
