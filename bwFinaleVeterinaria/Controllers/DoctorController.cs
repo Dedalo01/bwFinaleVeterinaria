@@ -54,8 +54,23 @@ namespace bwFinaleVeterinaria.Controllers
         [HttpPost]
         public ActionResult AddStray(PetRescueViewModel strayPet)
         {
+            if (ModelState.IsValid)
+            {
+                db.Pets.Add(strayPet.Pet);
+                db.SaveChanges();
 
-            return View();
+                //Pet lastPet = db.Pets.LastOrDefault();
+                var lastPet = db.Pets.OrderByDescending(p => p.Id).FirstOrDefault();
+
+                strayPet.RescueAdmission.PetId = lastPet.Id;
+                db.RescueAdmissions.Add(strayPet.RescueAdmission);
+                db.SaveChanges();
+
+                TempData["Success"] = $"L'animale di nome {strayPet.Pet.Name} è stato aggiunto con successo tra i randagi.";
+                return RedirectToAction("AddStray");
+            }
+
+            return View(strayPet);
         }
     }
 }
