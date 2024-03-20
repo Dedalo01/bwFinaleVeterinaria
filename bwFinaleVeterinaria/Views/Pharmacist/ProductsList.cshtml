@@ -9,7 +9,7 @@
 
 <h3>Prodotti Alimentari</h3>
 <table class="table table-bordered">
-    <thead>
+    <thead class="text-center">
         <tr>
             <th>Nome</th>
             <th>Tipo</th>
@@ -17,7 +17,7 @@
             <th>Azienda Produttrice</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         @foreach (var product in Model.Where(p => p.Type == "Alimentare"))
         {
             <tr>
@@ -32,7 +32,7 @@
 
 <h3>Prodotti Farmaceutici</h3>
 <table class="table table-bordered">
-    <thead>
+    <thead class="text-center">
         <tr>
             <th>Nome</th>
             <th>Tipo</th>
@@ -40,7 +40,7 @@
             <th>Azienda Produttrice</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         @foreach (var product in Model.Where(p => p.Type == "Farmaco"))
         {
             <tr>
@@ -61,4 +61,4 @@
 
 <br />
 
-<a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-primary my-2 p-3">Registra un Ordine</a>
+<a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-success my-2 p-3">Registra un Ordine</a>
