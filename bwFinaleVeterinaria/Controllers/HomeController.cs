@@ -10,19 +10,22 @@ namespace bwFinaleVeterinaria.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
+        [Authorize(Roles = "Doctor")]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+
+
+            return View();
+        }
+
+        [Authorize(Roles = "Pharmacist")]
+        public ActionResult About()
+        {
+
 
             return View();
         }
