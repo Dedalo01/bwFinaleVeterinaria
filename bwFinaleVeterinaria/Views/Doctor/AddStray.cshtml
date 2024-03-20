@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(rescue => rescue.RescueAdmission.Price, "Tariffa Giornaliera per Ricovero:")
+            @Html.LabelFor(rescue => rescue.RescueAdmission.Price, "Tariffa Mensile per Ricovero Attivo:")
             @Html.EditorFor(rescue => rescue.RescueAdmission.Price, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.Price, "", new { @class = "text-danger" })
         </div>

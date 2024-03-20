@@ -6,13 +6,87 @@
 <h2>VETERINARIO HOME</h2>
 
 <!-- BOTTONE PER AGGIUNGERE UTENTE -->
-<a href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
+<a href="#">Aggiungi Proprietario</a>
 <!-- BOTTONE PER AGGIUNGERE ANIMALE -->
-<a href="#">Aggiungi Animale</a>
+<a href="@Url.Action("AddPet")">Aggiungi Animale</a>
 <!-- BOTTONE PER AGGIUNGERE VISITA -->
 <a href="#">Aggiungi Visita</a>
 <!-- BOTTONE PER AGGIUNGERE RANDAGIO -->
-<a href="#">Aggiungi Randagio</a>
+<a href="@Url.Action("AddStray")">Aggiungi Randagio</a>
 
 
+<div id="stray-pets-table">
+    <!-- dynamic content -->
+</div>
 
+
+@section scripts {
+
+    <script>
+        fetch("@Url.Action("GetActiveAdmissions", "Api")")
+            .then(res =>res.json())
+            .then(strayPets => {
+                console.log(strayPets)
+                const strayPetsDiv = document.querySelector("#stray-pets-table")
+              
+                const tableElement = document.createElement("table")
+                tableElement.classList.add("table")
+
+                let table = `
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Colore Mantello</th>
+                            <th scope="col">Microchip</th>
+                            <th scope="col">Tariffa Mensile</th>
+                            <th scope="col">Data Ammissione</th>
+                            <th scope="col">Rimborso Attuale (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                `;
+                const endOfTable = `</tbody>`;
+
+                for (let i = 0; i < strayPets.length; i++) {
+                    const details = strayPets[i];
+
+                    const milliseconds = parseInt(details.RescueAdmission.AdmissionDate.match(/\d+/)[0], 10); 
+                    const dateObject = new Date(milliseconds);
+                    const today = new Date();
+
+                    const diffMonths = (today.getFullYear() - dateObject.getFullYear()) * 12 + (today.getMonth() - dateObject.getMonth())
+                    const refundAmount = diffMonths * details.RescueAdmission.Price;
+
+                    const year = dateObject.getFullYear();
+                    const month = dateObject.getMonth() + 1; 
+                    const day = dateObject.getDate();
+                    const hours = dateObject.getHours();
+                    const minutes = dateObject.getMinutes();
+
+                    const formattedDate = `${day}-${month}-${year} | ${hours}:${minutes}`;
+
+                    const tr = `
+                        <tr>
+                            <td>${details.Pet.Id}</td>
+                            <td>${details.Pet.Name}</td>
+                            <td>${details.Pet.Type}</td>
+                            <td>${details.Pet.CoatColor}</td>
+                            <td>${details.Pet.Microchip}</td>
+                            <td>${details.RescueAdmission.Price}</td>
+                            <td>${formattedDate}</td>
+                            <td>${refundAmount}</td>
+                       </tr>
+                            `
+                    table += tr;
+                }
+               
+                table += endOfTable
+                tableElement.innerHTML = table;
+                strayPetsDiv.appendChild(tableElement)
+
+            }).catch(err => console.error("ERRORE", err))
+        
+    </script>
+}
