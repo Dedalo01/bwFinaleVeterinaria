@@ -16,7 +16,7 @@ namespace bwFinaleVeterinaria.Controllers
             return View();
         }
 
-        //chiamata asincrona per le Examination
+        // Metodo Asincrono per recuperare le visite in Examination
         public ActionResult GetAnimalHistory(int petId)
         {
             var animal = db.Pets.Include(p => p.Examinations).SingleOrDefault(p => p.Id == petId);
@@ -25,7 +25,7 @@ namespace bwFinaleVeterinaria.Controllers
                 return HttpNotFound();
             }
 
-            return PartialView("_AnimalHistoryPartial", animal.Examinations.OrderByDescending(e => e.ExaminationDate));
+            return PartialView("~/Views/Doctor/_AnimalHistoryPartial.cshtml", animal.Examinations.OrderByDescending(e => e.ExaminationDate));
         }
     }
 }

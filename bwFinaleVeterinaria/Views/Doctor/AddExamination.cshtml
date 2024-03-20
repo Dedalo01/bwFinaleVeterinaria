@@ -74,7 +74,7 @@
                 var selectedPetId = $(this).val();
                 if (selectedPetId != "-1") {
                     $.ajax({
-                        url: '@Url.Action("GetAnimalHistory", "Doctor")',
+                        url: '@Url.Action("GetAnimalHistory", "Api")',
                         type: 'GET',
                         data: { petId: selectedPetId },
                         success: function (result) {
