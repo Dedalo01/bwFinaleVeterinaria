@@ -200,6 +200,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Doctor\AddOwner.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\AddExamination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

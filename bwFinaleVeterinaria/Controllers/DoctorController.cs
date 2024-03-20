@@ -37,5 +37,36 @@ namespace bwFinaleVeterinaria.Controllers
             TempData["Fail"] = "Il proprietario NON è stato aggiunto correttamente.";
             return View(owner);
         }
+
+        public ActionResult AddExamination()
+        {
+            var Pets = db.Pets.ToList();
+            TempData["Pets"] = Pets;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddExamination([Bind(Include = "petId, ExaminationDate, ObjectiveExamimation, TreatmentDescription")] Examination exam, int petId)
+        {
+            if (petId < 0)
+            {
+                TempData["Error"] = "Non hai inserito il Proprietario";
+                return RedirectToAction("AddExamination");
+            }
+
+            if (ModelState.IsValid)
+            {
+                exam.PetId = petId;
+                db.Examinations.Add(exam);
+                db.SaveChanges();
+                TempData["Success"] = "La visita è stata aggiunta correttamente.";
+                return RedirectToAction("AddExamination");
+            }
+
+            TempData["Fail"] = "La visita NON è stata aggiunta correttamente.";
+            return View(exam);
+        }
     }
 }
