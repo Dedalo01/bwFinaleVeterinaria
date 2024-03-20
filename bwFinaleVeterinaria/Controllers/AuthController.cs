@@ -11,12 +11,13 @@ namespace bwFinaleVeterinaria.Controllers
     {
         private VeterinariaDbContext db = new VeterinariaDbContext();
 
+
         [HttpPost]
-        public ActionResult Login(Employee model)
+        public ActionResult Login(HomeView utente)
         {
             if (ModelState.IsValid)
             {
-                var user = db.Employees.Where(u => u.Username == model.Username && u.Password == model.Password).FirstOrDefault();
+                var user = db.Employees.Where(u => u.Username == utente.Employee.Username && u.Password == utente.Employee.Password).FirstOrDefault();
 
                 if (user != null)
                 {
@@ -24,11 +25,11 @@ namespace bwFinaleVeterinaria.Controllers
 
                     if (user.RoleId == 1)
                     {
-                        return RedirectToAction("Contact","Home");
+                        return RedirectToAction("Index","Doctor");
                     }
                     else if (user.RoleId == 2)
                     {
-                        return RedirectToAction("About", "Home");
+                        return RedirectToAction("Index", "Pharmacist");
                     }
                     else
                     {
@@ -40,7 +41,7 @@ namespace bwFinaleVeterinaria.Controllers
                     ModelState.AddModelError("", "Username o password non validi.");
                 }
             }
-            return View(model);
+            return RedirectToAction("Index", "Home", utente);
         }
 
         public ActionResult Logout()
