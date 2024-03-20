@@ -41,7 +41,8 @@ namespace bwFinaleVeterinaria.Controllers
                 return RedirectToAction("AddPet");
             }
 
-            // error da modelState
+            var owners = db.Owners.ToList();
+            TempData["owners"] = owners;
             return View(pet);
         }
 
@@ -59,7 +60,7 @@ namespace bwFinaleVeterinaria.Controllers
                 db.Pets.Add(strayPet.Pet);
                 db.SaveChanges();
 
-                //Pet lastPet = db.Pets.LastOrDefault();
+
                 var lastPet = db.Pets.OrderByDescending(p => p.Id).FirstOrDefault();
 
                 strayPet.RescueAdmission.PetId = lastPet.Id;
