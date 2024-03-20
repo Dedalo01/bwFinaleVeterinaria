@@ -70,18 +70,21 @@
 
         <button type="submit">Aggiungi Animale</button>
     }
-
-    @if (TempData["Success"] != null)
-    {
-        <div>
-            <p>@TempData["Success"]</p>
-        </div>
-    }
-
-    @if (TempData["Error"] != null)
-    {
-        <div>
-            <p>@TempData["Error"]</p>
-        </div>
-    }
 </div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
+
+        <p>@TempData["Success"]</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
+        <p>@TempData["Error"]</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
