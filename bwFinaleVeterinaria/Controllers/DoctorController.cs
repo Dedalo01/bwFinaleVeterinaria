@@ -44,5 +44,18 @@ namespace bwFinaleVeterinaria.Controllers
             // error da modelState
             return View(pet);
         }
+
+        //add Rescued Pet
+        public ActionResult AddStray()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddStray(PetRescueViewModel strayPet)
+        {
+
+            return View();
+        }
     }
 }

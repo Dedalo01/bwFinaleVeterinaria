@@ -140,6 +140,7 @@
     <Compile Include="Models\Examination.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\PetRescueViewModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\RescueAdmission.cs" />
     <Compile Include="Models\Role.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\AddPet.cshtml" />
+    <Content Include="Views\Doctor\AddStray.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
