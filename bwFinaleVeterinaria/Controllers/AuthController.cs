@@ -24,11 +24,11 @@ namespace bwFinaleVeterinaria.Controllers
 
                     if (user.RoleId == 1)
                     {
-                        return RedirectToAction("Contact", "Home");
+                        return RedirectToAction("Index", "Doctor");
                     }
                     else if (user.RoleId == 2)
                     {
-                        return RedirectToAction("Index", "Pharmacist");
+                        return RedirectToAction("ProductsList", "Pharmacist");
                     }
                     else
                     {
