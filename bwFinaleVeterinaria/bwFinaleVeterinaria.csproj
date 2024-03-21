@@ -212,13 +212,17 @@
     <Content Include="Views\Pharmacist\CompanyAdd.cshtml" />
     <Content Include="Views\Pharmacist\CompanyDetails.cshtml" />
     <Content Include="Views\Pharmacist\ProductDetails.cshtml" />
+    <Content Include="Views\Pharmacist\Search.cshtml" />
+    <Content Include="Views\Pharmacist\_ProductSearchResults.cshtml" />
+    <Content Include="Views\Pharmacist\_FiscalCodeSearchResults.cshtml" />
+    <Content Include="Views\Pharmacist\_DateSearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Auth\" />
-    <Folder Include="Views\Pharmacist\" />
     <Folder Include="Views\Doctor\" />
+    <Folder Include="Views\Pharmacist\" />
     <Folder Include="Views\VeterinariaDb\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+<div>
+    <button type="button" class="btn btn-primary" onclick="showProductSearch()">Search by Product</button>
+    <button type="button" class="btn btn-primary" onclick="showFiscalCodeSearch()">Search by Fiscal Code</button>
+    <button type="button" class="btn btn-primary" onclick="showDateSearch()">Search by Date</button>
+</div>
+
+<div id="productSearchContainer" style="display: none;">
+    @using (Html.BeginForm("SearchProduct", "Pharmacist", FormMethod.Post, new { id = "productSearchForm" }))
+    {
+        <div class="form-group">
+            @Html.Label("Search Product name:")
+            @Html.TextBox("productName", null, new { @class = "form-control", id = "productName" })
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    }
+</div>
+
+<div id="fiscalCodeSearchContainer" style="display: none;">
+    @using (Html.BeginForm("SearchByFiscalCode", "Pharmacist", FormMethod.Post, new { id = "fiscalCodeSearchForm" }))
+    {
+        <div class="form-group">
+            @Html.Label("Fiscal Code:")
+            @Html.TextBox("fiscalCode", null, new { @class = "form-control", id = "fiscalCode" })
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    }
+</div>
+
+<div id="dateSearchContainer" style="display: none;">
+    @using (Html.BeginForm("SearchByDate", "Pharmacist", FormMethod.Post, new { id = "dateSearchForm" }))
+    {
+        <div class="form-group">
+            @Html.Label("Sale Date:")
+            @Html.TextBox("saleDate", null, new { @class = "form-control", id = "saleDate", type = "date" })
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    }
+</div>
+
+<div id="searchResultsContainer">
+    <!-- Search results will be displayed here -->
+</div>
+
+@section scripts {
+    <script>
+        function showProductSearch() {
+            $('#productSearchContainer').show();
+            $('#fiscalCodeSearchContainer').hide();
+            $('#dateSearchContainer').hide();
+        }
+
+        function showFiscalCodeSearch() {
+            $('#productSearchContainer').hide();
+            $('#fiscalCodeSearchContainer').show();
+            $('#dateSearchContainer').hide();
+        }
+
+        function showDateSearch() {
+            $('#productSearchContainer').hide();
+            $('#fiscalCodeSearchContainer').hide();
+            $('#dateSearchContainer').show();
+        }
+
+        $(document).ready(function () {
+            showProductSearch(); // Mostra automaticamente la ricerca per prodotto quando la pagina viene caricata
+
+            $('#productSearchForm').submit(function (e) {
+                e.preventDefault();
+                var productName = $('#productName').val();
+                $.ajax({
+                    url: '@Url.Action("SearchProduct", "Pharmacist")',
+                    type: 'POST',
+                    data: { productName: productName },
+                    success: function (result) {
+                        $('#searchResultsContainer').html(result);
+                    },
+                    error: function () {
+                        alert('Error during product search.');
+                    }
+                });
+            });
+
+            $('#fiscalCodeSearchForm').submit(function (e) {
+                e.preventDefault();
+                var fiscalCode = $('#fiscalCode').val();
+                $.ajax({
+                    url: '@Url.Action("SearchByFiscalCode", "Pharmacist")',
+                    type: 'POST',
+                    data: { fiscalCode: fiscalCode },
+                    success: function (result) {
+                        $('#searchResultsContainer').html(result);
+                    },
+                    error: function () {
+                        alert('Error during fiscal code search.');
+                    }
+                });
+            });
+
+            $('#dateSearchForm').submit(function (e) {
+                e.preventDefault();
+                var saleDate = $('#saleDate').val();
+                $.ajax({
+                    url: '@Url.Action("SearchByDate", "Pharmacist")',
+                    type: 'POST',
+                    data: { saleDate: saleDate },
+                    success: function (result) {
+                        $('#searchResultsContainer').html(result);
+                    },
+                    error: function () {
+                        alert('Error during date search.');
+                    }
+                });
+            });
+        });
+    </script>
+}

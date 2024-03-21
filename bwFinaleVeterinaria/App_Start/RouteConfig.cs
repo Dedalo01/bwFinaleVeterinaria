@@ -12,6 +12,23 @@ namespace bwFinaleVeterinaria
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                            name: "SearchProduct",
+                            url: "Pharmacist/SearchProduct",
+                            defaults: new { controller = "Pharmacist", action = "SearchProduct" }
+                        );
+
+            routes.MapRoute(
+                name: "SearchSaleByFiscalCode",
+                url: "Pharmacist/SearchSaleByFiscalCode",
+                defaults: new { controller = "Pharmacist", action = "SearchSaleByFiscalCode" }
+            );
+
+            routes.MapRoute(
+                name: "SearchSaleByDate",
+                url: "Pharmacist/SearchSaleByDate",
+                defaults: new { controller = "Pharmacist", action = "SearchSaleByDate" }
+            );
 
             routes.MapRoute(
                 name: "Default",
