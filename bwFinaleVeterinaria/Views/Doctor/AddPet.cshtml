@@ -5,9 +5,7 @@
 
 @model bwFinaleVeterinaria.Models.Pet
 
-<h2>Aggiungi Animale</h2>
-<p>Cerca il proprietario dell'animale nel Database.</p>
-<p>Se non è presente, aggiungilo</p>
+
 
 @if (TempData["Success"] != null)
 {
@@ -33,7 +31,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label class="form-label" for="ownerId">Seleziona Proprietario</label>
+            <h2>Aggiungi Animale</h2>
+
             <select name="ownerId" id="ownerId">
                 <option value="-1">--- Seleziona Proprietario ---</option>
                 @foreach (var owner in TempData["owners"] as List<bwFinaleVeterinaria.Models.Owner>)
@@ -41,51 +40,134 @@
                     <option value="@owner.Id">@owner.Name @owner.Surname | @owner.FiscalCode</option>
                 }
             </select>
+
+            <div>
+                <p>Il proprietario non è presente nel Database? </p>
+                <a href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
+            </div>
         </div>
 
-        <div class="form-group">
-            <p>Il proprietario non è presente nel Database?</p>
-            <a href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
-        </div>
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Name, "Inserisci Nome dell'Animale:")
+                @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(p => p.Name, "Inserisci Nome dell'Animale:")
-            @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Type, "Inserisci che tipo di animale sia:")
+                @Html.EditorFor(p => p.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(p => p.Type, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(p => p.Type, "Inserisci che tipo di animale sia:")
-            @Html.EditorFor(p => p.Type, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(p => p.Type, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.RegistrationDate, "Inserisci la Data di Registrazione:")
+                @Html.EditorFor(p => p.RegistrationDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+                @Html.ValidationMessageFor(p => p.RegistrationDate, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(p => p.RegistrationDate, "Inserisci la Data di Registrazione:")
-            @Html.EditorFor(p => p.RegistrationDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
-            @Html.ValidationMessageFor(p => p.RegistrationDate, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.CoatColor, "Inserisci il colore del Manto:")
+                @Html.EditorFor(p => p.CoatColor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(p => p.CoatColor, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(p => p.CoatColor, "Inserisci il colore del Manto:")
-            @Html.EditorFor(p => p.CoatColor, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(p => p.CoatColor, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.BirthDate, "Inserisci la Data di Nascita:")
+                @Html.EditorFor(p => p.BirthDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+                @Html.ValidationMessageFor(p => p.BirthDate, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(p => p.BirthDate, "Inserisci la Data di Nascita:")
-            @Html.EditorFor(p => p.BirthDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
-            @Html.ValidationMessageFor(p => p.BirthDate, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Microchip, "Inserisci il Codice Microchip (15 caratteri):")
+                @Html.EditorFor(p => p.Microchip, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(p => p.Microchip, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(p => p.Microchip, "Inserisci il Codice Microchip (15 caratteri):")
-            @Html.EditorFor(p => p.Microchip, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(p => p.Microchip, "", new { @class = "text-danger" })
+            <button class="btn" type="submit">Aggiungi Animale</button>
         </div>
-
-        <button type="submit">Aggiungi Animale</button>
     }
 </section>
 
 
+@section styles {
+    <style>
+        /* SELECT */
+        #ownerId {
+            min-width: 400px;
+            position: relative;
+            width: contain;
+        }
+
+        select {
+            appearance: none;
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 0.675em 1em 0.675em 1em;
+            background-color: #fff;
+            border: 1px solid #caced1;
+            border-radius: 10px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        #ownerId::before, #ownerId::after {
+            --size: 0.3rem;
+            position: absolute;
+            content: "";
+            right: 1rem;
+            pointer-events: none;
+        }
+
+        #ownerId::before {
+            border-left: var(--size) solid transparent;
+            border-right: var(--size) solid transparent;
+            border-bottom: var(--size) solid black;
+            top: 40%;
+        }
+
+        #ownerId::after {
+            border-left: var(--size) solid transparent;
+            border-right: var(--size) solid transparent;
+            border-top: var(--size) solid black;
+            top: 55%;
+        }
+
+        /* FORM */
+
+        .main-content {
+            width: 100%;
+            height:100vh;
+            margin-top:0;
+        }
+        .main-content form {
+            width:100%;
+            height:100%;
+            display:flex;
+            gap: 6rem;
+            align-items: center;
+            justify-content:center;
+        }
+
+        .main-content form h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--dAzure);
+        }
+
+        .main-content form p {
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .main-content form button {
+            background-color: var(--dAzure);
+            margin-top: 25px;
+            color: white;
+        }
+
+        .main-content form button:hover {
+            background-color: var(--azure);
+        }
+    </style>
+}
