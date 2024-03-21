@@ -57,3 +57,10 @@ table a {
     animation: colorChange 2s infinite; 
 }
 
+
+/* CABINETS DRAWINGS */
+@media (max-width: 1920px) {
+    .cabinets-container {
+        font-size: 0.9rem;
+    }
+}
