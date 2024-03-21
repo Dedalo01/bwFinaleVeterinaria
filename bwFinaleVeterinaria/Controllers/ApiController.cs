@@ -1,7 +1,7 @@
 ﻿using bwFinaleVeterinaria.Models;
-using System.Web.Mvc;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 
 
 namespace bwFinaleVeterinaria.Controllers
@@ -10,16 +10,8 @@ namespace bwFinaleVeterinaria.Controllers
     {
         private VeterinariaDbContext db = new VeterinariaDbContext();
 
-        // GET: Api
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public JsonResult GetActiveAdmissions()
         {
-            VeterinariaDbContext db = new VeterinariaDbContext();
-
             var strayPets = db.Pets
              .Where(p => p.RescueAdmissions.Any(ra => ra.EndAdmissionDate == null))
              .Select(p => new
