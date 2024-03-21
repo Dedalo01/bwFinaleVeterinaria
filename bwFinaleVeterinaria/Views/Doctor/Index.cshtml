@@ -5,16 +5,35 @@
 
 <h2>VETERINARIO HOME</h2>
 
-<!-- BOTTONE PER AGGIUNGERE UTENTE -->
-<a href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
-<!-- BOTTONE PER AGGIUNGERE ANIMALE -->
-<a href="@Url.Action("AddPet")">Aggiungi Animale</a>
-<!-- BOTTONE PER AGGIUNGERE VISITA -->
-<a href="@Url.Action("AddExamination")">Aggiungi Visita</a>
-<!-- BOTTONE PER AGGIUNGERE RANDAGIO -->
-<a href="@Url.Action("AddStray")">Aggiungi Randagio</a>
+
+<div class="grid-container">
+    <div id="div-link-owner">
+        <!-- BOTTONE PER AGGIUNGERE UTENTE -->
+        <a href="@Url.Action("AddOwner")"></a>
+        <p>Aggiungi Proprietario</p>
+    </div>
+
+    <div id="div-link-pet">
+        <!-- BOTTONE PER AGGIUNGERE ANIMALE -->
+        <a href="@Url.Action("AddPet")"></a>
+        <p>Aggiungi Animale</p>
+    </div>
+
+    <div id="div-link-exam">
+        <!-- BOTTONE PER AGGIUNGERE VISITA -->
+        <a href="@Url.Action("AddExamination")"></a>
+        <p>Aggiungi Visita</p>
+    </div>
+
+    <div id="div-link-stray">
+        <!-- BOTTONE PER AGGIUNGERE RANDAGIO -->
+        <a href="@Url.Action("AddStray")"></a>
+        <p>Aggiungi Randagio</p>
+    </div>
+</div>
 
 
+<h3>Ricoveri Attivi</h3>
 <div id="stray-pets-table">
     <!-- dynamic content -->
 </div>
@@ -22,14 +41,105 @@
 
 @section styles {
     <style>
-        h2 {
-            color: var(--white);
+        h2, h3 {
             color: var(--dAzure);
+           
         }
 
-        /* altre robe di css */
+        /* LINKS */
+        #div-link-owner {
+            grid-area: owner;
+            background-color: #D27E24;
+            position: relative;
+        }
+
+        #div-link-pet {
+            grid-area: pet;
+            background-color: #BA2D18;
+            position: relative;
+        }
+
+        #div-link-exam {
+            grid-area: exam;
+            background-color: #275897;
+            position: relative;
+        }
+
+        #div-link-stray {
+            grid-area: stray;
+            background-color: #DFB51D;
+            position: relative;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                "exam exam owner owner owner owner"
+                "exam exam owner owner owner owner"
+                "exam exam pet pet stray stray";
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+            .grid-container > div {
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+                border-radius: var(--btnBorder);
+                padding: 20px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all ease-in 0.2s;
+            }
+
+            .grid-container p {
+                color: white;
+                margin: 0;
+            }
+
+            .grid-container a {
+                position: absolute;
+                z-index: 10;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .grid-container > div:hover {
+                transform: rotate(-3deg);
+                z-index: 200;
+            }
+
+        /* TABLES */
+        #stray-pets-table table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: var(--btnBorder);
+        }
+
+        #stray-pets-table td, #stray-pets-table th {
+            /*border: 2px solid #275897;*/
+            padding: 8px;
+        }
+
+        #stray-pets-table tr:nth-child(even) {
+            background-color: var(--azure)
+        }
+
+        #stray-pets-table tr:hover {
+            background-color: #275897;
+            color: white;
+        }
+
+        #stray-pets-table th {
+            background-color: var(--dAzure);
+            color: white;
+            text-transform: uppercase;
+        }
     </style>
-    }
+}
 
 @section scripts {
 
@@ -39,9 +149,9 @@
             .then(strayPets => {
                 console.log(strayPets)
                 const strayPetsDiv = document.querySelector("#stray-pets-table")
-              
+
                 const tableElement = document.createElement("table")
-                tableElement.classList.add("table")
+               // tableElement.classList.add("table")
 
                 let table = `
                     <thead>
@@ -63,7 +173,7 @@
                 for (let i = 0; i < strayPets.length; i++) {
                     const details = strayPets[i];
 
-                    const milliseconds = parseInt(details.RescueAdmission.AdmissionDate.match(/\d+/)[0], 10); 
+                    const milliseconds = parseInt(details.RescueAdmission.AdmissionDate.match(/\d+/)[0], 10);
                     const dateObject = new Date(milliseconds);
                     const today = new Date();
 
@@ -71,7 +181,7 @@
                     const refundAmount = diffMonths * details.RescueAdmission.Price;
 
                     const year = dateObject.getFullYear();
-                    const month = dateObject.getMonth() + 1; 
+                    const month = dateObject.getMonth() + 1;
                     const day = dateObject.getDate();
                     const hours = dateObject.getHours();
                     const minutes = dateObject.getMinutes();
@@ -92,12 +202,15 @@
                             `
                     table += tr;
                 }
-               
+
                 table += endOfTable
                 tableElement.innerHTML = table;
                 strayPetsDiv.appendChild(tableElement)
 
             }).catch(err => console.error("ERRORE", err))
+
+
+
 
     </script>
 }
