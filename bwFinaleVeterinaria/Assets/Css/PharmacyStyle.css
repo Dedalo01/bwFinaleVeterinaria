@@ -38,3 +38,22 @@ table a {
     display: inline-block;
     overflow: auto;
 }
+
+@keyframes colorChange {
+    0% {
+        color: var(--dGreen);
+    }
+
+    50% {
+        color: black;
+    }
+
+    100% {
+        color: var(--dGreen);
+    }
+}
+
+.highlighted {
+    animation: colorChange 2s infinite; 
+}
+

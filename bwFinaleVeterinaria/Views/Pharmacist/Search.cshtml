@@ -4,20 +4,20 @@
 <link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
 <div class="buttonsCointainer">
-    <button type="button" class="btn btn-primary" onclick="showProductSearch()">Search by Product</button>
-    <button type="button" class="btn btn-primary" onclick="showFiscalCodeSearch()">Search by Fiscal Code</button>
-    <button type="button" class="btn btn-primary" onclick="showDateSearch()">Search by Date</button>
+    <button type="button" class="btn btn-primary" onclick="showProductSearch()">Cerca per Prodotto</button>
+    <button type="button" class="btn btn-primary" onclick="showFiscalCodeSearch()">Cerca per Codice Fiscale</button>
+    <button type="button" class="btn btn-primary" onclick="showDateSearch()">Cerca per Data</button>
 </div>
 
 <div id="productSearchContainer" style="display: none;">
     @using (Html.BeginForm("SearchProduct", "Pharmacist", FormMethod.Post, new { id = "productSearchForm" }))
     {
         <div class="form-group">
-            @Html.Label("Search Product name:")
+            @Html.Label("Nome Prodotto:")
             @Html.TextBox("productName", null, new { @class = "form-control", id = "productName" })
         </div>
         <div class="buttonsCointainer">
-            <button type="submit" class="btn btn-primary my-3">Search</button>
+            <button type="submit" class="btn btn-primary my-3">Cerca</button>
         </div>
     }
 </div>
@@ -26,11 +26,11 @@
     @using (Html.BeginForm("SearchByFiscalCode", "Pharmacist", FormMethod.Post, new { id = "fiscalCodeSearchForm" }))
     {
         <div class="form-group">
-            @Html.Label("Fiscal Code:")
+            @Html.Label("Codice Fiscale:")
             @Html.TextBox("fiscalCode", null, new { @class = "form-control", id = "fiscalCode" })
         </div>
         <div class="buttonsCointainer">
-            <button type="submit" class="btn btn-primary my-3">Search</button>
+            <button type="submit" class="btn btn-primary my-3">Cerca</button>
         </div>
     }
 </div>
@@ -39,12 +39,12 @@
     @using (Html.BeginForm("SearchByDate", "Pharmacist", FormMethod.Post, new { id = "dateSearchForm" }))
     {
         <div class="form-group">
-            @Html.Label("Sale Date:")
+            @Html.Label("Data di Acquisto:")
             @Html.TextBox("saleDate", null, new { @class = "form-control", id = "saleDate", type = "date" })
         </div>
 
         <div class="buttonsCointainer">
-            <button type="submit" class="btn btn-primary my-3">Search</button>
+            <button type="submit" class="btn btn-primary my-3">Cerca</button>
         </div>
     }
 </div>

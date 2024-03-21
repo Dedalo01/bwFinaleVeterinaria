@@ -5,7 +5,7 @@
 }
 <link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
-<div class="m-5 p-5 text-center borderTable">
+<div class="mb-2 mt-5 p-5 text-center borderTable">
     <h1 class="card-title mb-2 fs-1">@Model.Name</h1>
 
     <div class="my-2">
@@ -19,3 +19,123 @@
     </div>
 
 </div>
+
+<div class="d-flex justify-content-center ">
+
+    <div class="">
+        <span style="font-family: monospace; white-space: pre; margin: 0;" class="A1">
+                    <b class="fs-1 ACabinet">A</b>
+
+            ██████████████████
+            █                █
+            █                █
+            ██████████████████
+        </span>
+        <span style="font-family: monospace; white-space: pre; margin: 0;" class="A2">
+            ██████████████████
+            █                █
+            █                █
+            ██████████████████
+        </span>
+        <span style="font-family: monospace; white-space: pre; margin: 0;" class="A3">
+            ██████████████████
+            █                █
+            █                █
+            ██████████████████
+        </span>
+    </div>
+
+    <div class="">
+        <span style="font-family: monospace; white-space: pre; margin: 0;" class="B1">
+                    <b class="fs-1 BCabinet">B</b>
+
+            ██████████████████
+            █                █
+            █                █
+            ██████████████████
+        </span>
+        <span style="font-family: monospace; white-space: pre; margin: 0;" class="B2">
+            ██████████████████
+            █                █
+            █                █
+            ██████████████████
+        </span>
+        <span style="font-family: monospace; white-space: pre; margin: 0;" class="B3">
+            ██████████████████
+            █                █
+            █                █
+            ██████████████████
+        </span>
+    </div>
+
+</div>
+
+@section scripts{
+    <script>
+        @switch (Model.Cabinets.FirstOrDefault().NumericCode)
+{
+    case "A":
+            <text>
+                document.querySelector(".ACabinet").classList.add("highlighted");
+            </text>
+        switch (Model.Cabinets.First().Drawer.DrawerNumber.ToString())
+        {
+            case "1":
+                        <text>
+                            document.querySelector(".A1").classList.add("highlighted");
+                        </text>
+                break;
+
+            case "2":
+                        <text>
+                            document.querySelector(".A2").classList.add("highlighted");
+                        </text>
+                break;
+
+            case "3":
+                        <text>
+                            document.querySelector(".A3").classList.add("highlighted");
+                        </text>
+                break;
+            default:
+
+                break;
+        }
+        break;
+    case "B":
+            <text>
+                document.querySelector(".BCabinet").classList.add("highlighted");
+            </text>
+        switch (Model.Cabinets.First().Drawer.DrawerNumber.ToString())
+        {
+            case "1":
+                        <text>
+                            document.querySelector(".B1").classList.add("highlighted");
+                        </text>
+                break;
+
+            case "2":
+                        <text>
+                            document.querySelector(".B2").classList.add("highlighted");
+                        </text>
+                break;
+
+            case "3":
+                        <text>
+                            document.querySelector(".B3").classList.add("highlighted");
+                        </text>
+                break;
+
+            default:
+
+                break;
+        }
+        break;
+    default:
+
+        break;
+}
+    </script>
+
+}
+
