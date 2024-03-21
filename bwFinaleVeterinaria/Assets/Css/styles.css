@@ -1,0 +1,10 @@
+﻿:root {
+    --azure: #25CED1;
+    --white: #FFF;
+    --champ: #FCEADE;
+    --lGreen: #8FE378;
+}
+
+.navbar {
+    background-color: var(--azure) !important;
+}
