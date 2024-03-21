@@ -20,14 +20,14 @@
     <!-- Tabella Ammissioni -->
 <div class="mb-4 w-50 mx-auto">
     <h3 class="mb-3">Ultimi arrivati!</h3>
-    <div id="rescueCarousel" class="carousel slide" data-ride="carousel" style="height: 300px;">
+    <div id="rescueCarousel" class="carousel slide" data-ride="carousel" style="height: 300px; overflow: hidden;">
         <div class="carousel-inner" style="height: 100%;">
             @foreach (var item in Model.RescueAdmissions)
             {
-                <div class="carousel-item @(item == Model.RescueAdmissions.First() ? "active" : "")" style="height: 100%;">
-                    <img src="@item.PetImageUrl" class="d-block w-100 h-100" alt="Immagine Animale" style="object-fit: contain; border-radius: 25px;" />
-                    <div class="carousel-caption d-none d-md-block" style="position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,0.5); padding: 10px;">
-                        <h5 style="color: white;">Data ammissione: @item.AdmissionDate</h5>
+             <div class="carousel-item @(item == Model.RescueAdmissions.First() ? "active" : "")" style="height: 100%;">
+                <img src="@item.PetImageUrl" class="d-block w-100 h-100" alt="Immagine Animale" style="object-fit: contain; border-radius: 25px;" />
+                <div class="carousel-caption d-none d-md-block" style="position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,0.5); padding: 10px;">
+                <h5 style="color: white;">Data ammissione: @item.AdmissionDate</h5>
                     </div>
                 </div>
             }
@@ -43,6 +43,36 @@
     </div>
 </div>
     <style>
+        .carousel-inner {
+            display: flex;
+        }
+
+        .carousel-item {
+            flex: 0 0 100%; 
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .carousel-item.active {
+            transform: translateX(0); 
+        }
+
+        .carousel-item-next, .carousel-item-prev, .carousel-item.active {
+            display: flex;
+        }
+
+        .carousel-item-next, .carousel-item-prev {
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        .carousel-item-next {
+            transform: translateX(100%); 
+        }
+
+        .carousel-item-prev {
+            transform: translateX(-100%); 
+        }
         #rescueCarousel {
             height: 500px;
             background-color: #F7C3A1;
@@ -51,7 +81,6 @@
         }
 
         
-
         @@media (max-width: 991px) {
             #rescueCarousel {
                 height: 400px;
