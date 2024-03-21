@@ -1,11 +1,4 @@
-﻿using System.Web.Mvc;
-using bwFinaleVeterinaria.Models;
-using System.Web.Security;
-using System.Linq;
-using static System.Web.Razor.Parser.SyntaxConstants;
-
-
-namespace bwFinaleVeterinaria.Controllers
+﻿namespace bwFinaleVeterinaria.Controllers
 {
     public class AuthController : Controller
     {
@@ -25,11 +18,11 @@ namespace bwFinaleVeterinaria.Controllers
 
                     if (user.RoleId == 1)
                     {
-                        return RedirectToAction("Contact","Home");
+                        return RedirectToAction("Index", "Doctor");
                     }
                     else if (user.RoleId == 2)
                     {
-                        return RedirectToAction("Index", "Pharmacist");
+                        return RedirectToAction("ProductsList", "Pharmacist");
                     }
                     else
                     {

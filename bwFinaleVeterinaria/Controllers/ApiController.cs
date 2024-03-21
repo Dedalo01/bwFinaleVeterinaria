@@ -4,8 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using bwFinaleVeterinaria.Models;
-using System.Linq;
 
 
 namespace bwFinaleVeterinaria.Controllers
@@ -119,4 +117,5 @@ namespace bwFinaleVeterinaria.Controllers
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
         }
+    }
 }
