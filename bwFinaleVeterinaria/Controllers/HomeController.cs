@@ -13,6 +13,14 @@ namespace bwFinaleVeterinaria.Controllers
         //Get: Lista ricoveri
         public ActionResult Index()
         {
+            if (HttpContext.User.IsInRole("Doctor"))
+            {
+                return RedirectToAction("Index", "Doctor");
+            }
+            if (HttpContext.User.IsInRole("Pharmacist"))
+            {
+                return RedirectToAction("ProductsList", "Pharmacist");
+            }
             var viewModel = new HomeView
             {
                 RescueAdmissions = db.RescueAdmissions.ToList(),
