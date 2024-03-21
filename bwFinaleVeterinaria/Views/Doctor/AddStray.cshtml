@@ -3,11 +3,42 @@
     ViewBag.Title = "AddStray";
 }
 
+@section styles{
+        <style>
+            .formContainer {
+                background-color: var(--dAzure);
+                padding: 20px;
+                margin-right: 20px;
+            }
+
+            .form-group{
+                margin-bottom: 10px;
+            }
+
+            button {
+                padding: 5px;
+                background: radial-gradient(circle, var(--azure) 80%, var(--dAzure) 100%);
+                border: none;
+                color: white;
+            }
+
+            h2, p {
+                color: var(--dAzure);
+            }
+
+            .divider {
+                border: 2px solid var(--dAzure);
+            }
+        </style>
+    }
+
 @model bwFinaleVeterinaria.Models.PetRescueViewModel
 
-<h2>Aggiungi Animale Randagio</h2>
+<h2 class="text-center">Aggiungi Animale Randagio</h2>
 
-<p>Compila il form per salvare l'animale nel database</p>
+<p class="text-center">Compila il form per salvare l'animale nel database</p>
+
+<hr class="divider"/>
 
 @if (TempData["Success"] != null)
 {
@@ -21,65 +52,71 @@
 <div class="">
     @using (Html.BeginForm("AddStray", "Doctor"))
     {
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.Pet.Name, "Inserisci Nome dell'Animale:")
-            @Html.EditorFor(rescue => rescue.Pet.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(rescue => rescue.Pet.Name, "", new { @class = "text-danger" })
+        <div class="d-flex justify-content-center my-3">
+            <div class="formContainer">
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.Pet.Name, "Inserisci Nome dell'Animale:")
+                    @Html.EditorFor(rescue => rescue.Pet.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(rescue => rescue.Pet.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.Pet.Type, "Inserisci la tipologia di Animale:")
+                    @Html.EditorFor(rescue => rescue.Pet.Type, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(rescue => rescue.Pet.Type, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.Pet.RegistrationDate, "Inserisci Data di Registrazione:")
+                    @Html.EditorFor(rescue => rescue.Pet.RegistrationDate, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                    @Html.ValidationMessageFor(rescue => rescue.Pet.RegistrationDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.Pet.CoatColor, "Inserisci il colore del Manto:")
+                    @Html.EditorFor(rescue => rescue.Pet.CoatColor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(rescue => rescue.Pet.CoatColor, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.Pet.Microchip, "Inserisci il codice Microchip (se lo possiede):")
+                    @Html.EditorFor(rescue => rescue.Pet.Microchip, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(rescue => rescue.Pet.Microchip, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="formContainer">
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.RescueAdmission.AdmissionDate, "Data di Accetazione nella Struttura:")
+                    @Html.EditorFor(rescue => rescue.RescueAdmission.AdmissionDate, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                    @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.AdmissionDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.RescueAdmission.PetImageUrl, "Immagine URL dell'Animale:")
+                    @Html.EditorFor(rescue => rescue.RescueAdmission.PetImageUrl, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.PetImageUrl, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(rescue => rescue.RescueAdmission.Price, "Tariffa Mensile per Ricovero Attivo:")
+                    @Html.EditorFor(rescue => rescue.RescueAdmission.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="text-center my-4">
+            <button type="submit">Salva Randagio</button>
+        </div>
+            }
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.Pet.Type, "Inserisci la tipologia di Animale:")
-            @Html.EditorFor(rescue => rescue.Pet.Type, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(rescue => rescue.Pet.Type, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.Pet.RegistrationDate, "Inserisci Data di Registrazione:")
-            @Html.EditorFor(rescue => rescue.Pet.RegistrationDate, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
-            @Html.ValidationMessageFor(rescue => rescue.Pet.RegistrationDate, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.Pet.CoatColor, "Inserisci il colore del Manto:")
-            @Html.EditorFor(rescue => rescue.Pet.CoatColor, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(rescue => rescue.Pet.CoatColor, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.Pet.Microchip, "Inserisci il codice Microchip (se lo possiede):")
-            @Html.EditorFor(rescue => rescue.Pet.Microchip, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(rescue => rescue.Pet.Microchip, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.RescueAdmission.AdmissionDate, "Data di Accetazione nella Struttura:")
-            @Html.EditorFor(rescue => rescue.RescueAdmission.AdmissionDate, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
-            @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.AdmissionDate, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.RescueAdmission.PetImageUrl, "Immagine URL dell'Animale:")
-            @Html.EditorFor(rescue => rescue.RescueAdmission.PetImageUrl, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.PetImageUrl, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(rescue => rescue.RescueAdmission.Price, "Tariffa Mensile per Ricovero Attivo:")
-            @Html.EditorFor(rescue => rescue.RescueAdmission.Price, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(rescue => rescue.RescueAdmission.Price, "", new { @class = "text-danger" })
-        </div>
-
-        <button type="submit">Salva Randagio</button>
-
-    }
-</div>
 
 
-
-@*@if (TempData["Error"] != null)
-    {
-        <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
-            <p>@TempData["Error"]</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }*@
+        @*@if (TempData["Error"] != null)
+            {
+                <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
+                    <p>@TempData["Error"]</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }*@

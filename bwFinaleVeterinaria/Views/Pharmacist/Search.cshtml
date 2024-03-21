@@ -1,21 +1,24 @@
 ﻿@{
     ViewBag.Title = "Search";
 }
+<link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
-<div>
-    <button type="button" class="btn btn-primary" onclick="showProductSearch()">Search by Product</button>
-    <button type="button" class="btn btn-primary" onclick="showFiscalCodeSearch()">Search by Fiscal Code</button>
-    <button type="button" class="btn btn-primary" onclick="showDateSearch()">Search by Date</button>
+<div class="buttonsCointainer">
+    <button type="button" class="btn btn-primary" onclick="showProductSearch()">Cerca per Prodotto</button>
+    <button type="button" class="btn btn-primary" onclick="showFiscalCodeSearch()">Cerca per Codice Fiscale</button>
+    <button type="button" class="btn btn-primary" onclick="showDateSearch()">Cerca per Data</button>
 </div>
 
 <div id="productSearchContainer" style="display: none;">
     @using (Html.BeginForm("SearchProduct", "Pharmacist", FormMethod.Post, new { id = "productSearchForm" }))
     {
         <div class="form-group">
-            @Html.Label("Search Product name:")
+            @Html.Label("Nome Prodotto:")
             @Html.TextBox("productName", null, new { @class = "form-control", id = "productName" })
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <div class="buttonsCointainer">
+            <button type="submit" class="btn btn-primary my-3">Cerca</button>
+        </div>
     }
 </div>
 
@@ -23,10 +26,12 @@
     @using (Html.BeginForm("SearchByFiscalCode", "Pharmacist", FormMethod.Post, new { id = "fiscalCodeSearchForm" }))
     {
         <div class="form-group">
-            @Html.Label("Fiscal Code:")
+            @Html.Label("Codice Fiscale:")
             @Html.TextBox("fiscalCode", null, new { @class = "form-control", id = "fiscalCode" })
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <div class="buttonsCointainer">
+            <button type="submit" class="btn btn-primary my-3">Cerca</button>
+        </div>
     }
 </div>
 
@@ -34,15 +39,22 @@
     @using (Html.BeginForm("SearchByDate", "Pharmacist", FormMethod.Post, new { id = "dateSearchForm" }))
     {
         <div class="form-group">
-            @Html.Label("Sale Date:")
+            @Html.Label("Data di Acquisto:")
             @Html.TextBox("saleDate", null, new { @class = "form-control", id = "saleDate", type = "date" })
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+
+        <div class="buttonsCointainer">
+            <button type="submit" class="btn btn-primary my-3">Cerca</button>
+        </div>
     }
 </div>
 
 <div id="searchResultsContainer">
     <!-- Search results will be displayed here -->
+</div>
+
+<div class="buttonsCointainer">
+    <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary my-4">Torna alla lista prodotti</a>
 </div>
 
 @section scripts {
@@ -117,4 +129,6 @@
             });
         });
     </script>
+
+
 }

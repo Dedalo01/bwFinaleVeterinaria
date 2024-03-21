@@ -4,13 +4,14 @@
     --champ: #FCEADE;
     --dCham: #F7C3A1;
     --lGreen: #8FE378;
-    --dGreen: #71CE3B;
+    --dGreen: #44BD23;
+    --linkGreen: #2B7916;
     --white: #FFF;
     --btnBorder: 10px;
 }
 
 .navbar {
-    background-color: var(--azure) !important;
+    background-color: var(--dGreen) !important;
 }
 
 body {

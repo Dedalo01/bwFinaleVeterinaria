@@ -3,62 +3,80 @@
 @{
     ViewBag.Title = "Add Product";
 }
+<link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
-<h2>Aggiungi un farmaco</h2>
+
+<h1 class="text-center">Aggiungi un farmaco</h1>
+
+<hr class="divider" />
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <div class="d-flex my-2">
 
-    <div class="form-group mb-3">
-        @Html.LabelFor(model => model.Name, "Nome")
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        <div class="me-5">
+            <h2>Aggiungi dettagli farmaco</h2>
+
+            <div class="formsContainer">
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.Name, "Nome")
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.Type, "Tipo")
+                    @Html.DropDownListFor(model => model.Type, new SelectList(Model.ProductTypes), "Select Type", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.PossibleUses, "Usi possibili")
+                    @Html.TextBoxFor(model => model.PossibleUses, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PossibleUses, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.CompanyId, "Azienda produttrice:")
+                    @Html.DropDownListFor(model => model.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "Select Company", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="ms-5">
+            <h2>Inserisci armadietto e cassetto</h2>
+
+            <div class="formsContainer">
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.DrawerId, "Numero Cassetto:")
+                    @Html.DropDownListFor(model => model.DrawerId, Model.Drawers.Select(d => new SelectListItem { Text = d.DrawerNumber.ToString(), Value = d.Id.ToString() }), "Select Drawer", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DrawerId, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.NumericCode, "Codice Armadietto:")
+                    @Html.DropDownListFor(model => model.NumericCode, new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "A", Value = "A" },
+                        new SelectListItem { Text = "B", Value = "B" }
+                    }, "Select Cabinet", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NumericCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group mb-3">
-        @Html.LabelFor(model => model.Type, "Tipo")
-        @Html.DropDownListFor(model => model.Type, new SelectList(Model.ProductTypes), "Select Type", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+
+    <div class="buttonsCointainer">
+
+        <button type="submit" class="btn btn-primary my-2">Aggiungi</button>
+
+        <br />
+
+        <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary mt-3">Torna alla Lista Prodotti</a>
+
     </div>
-
-    <div class="form-group mb-3">
-        @Html.LabelFor(model => model.PossibleUses, "Usi possibili")
-        @Html.TextBoxFor(model => model.PossibleUses, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.PossibleUses, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group mb-3">
-        @Html.LabelFor(model => model.CompanyId, "Azienda produttrice:")
-        @Html.DropDownListFor(model => model.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "Select Company", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
-    </div>
-
-    <h3>INSERISCI ARMADIETTO E CASSETTO IN CUI SI TROVA IL NUOVO FARMACO</h3>
-
-    <div class="form-group mb-3">
-        @Html.LabelFor(model => model.DrawerId, "Numero Cassetto:")
-        @Html.DropDownListFor(model => model.DrawerId, Model.Drawers.Select(d => new SelectListItem { Text = d.DrawerNumber.ToString(), Value = d.Id.ToString() }), "Select Drawer", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.DrawerId, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group mb-3">
-        @Html.LabelFor(model => model.NumericCode, "Codice Armadietto:")
-        @Html.DropDownListFor(model => model.NumericCode, new List<SelectListItem>
-        {
-            new SelectListItem { Text = "A", Value = "A" },
-            new SelectListItem { Text = "B", Value = "B" }
-        }, "Select Cabinet", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.NumericCode, "", new { @class = "text-danger" })
-    </div>
-
-
-
-
-    <button type="submit" class="btn btn-primary my-2">Submit</button>
-
-    <br />
-
-    <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary mt-3">Torna alla Lista Prodotti</a>
-
 }
