@@ -7,32 +7,55 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.pixers.pics/pho_wat(s3:700/FO/50/78/58/27/700_FO50785827_27a9915c6fe3cd84a1e85a305291b85a.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/poster-vector-logo-veterinaria.jpg.jpg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>@ViewBag.Title - Veterinaria</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Assets/Img/FarmaciaLogoNoBack.png" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel=" stylesheet" href="~/Assets/Css/styles.css" />
-    @RenderSection("styles", required:false)
+    @RenderSection("styles", required: false)
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
         <div class="container">
-            @Html.ActionLink("Veterinaria", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <img src="~/Assets/Img/FarmaciaLogoNoBack.png" style="width:60px;" />
+            @Html.ActionLink("Veterinaria", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-bold" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Informazioni", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contatto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                <ul class="navbar-nav flex-grow-3">
+                    @if (User.IsInRole("Doctor"))
+                    {
+                        <style>
+                            .navbar {
+                                background-color: var( --dAzure) !important;
+                            }
+                        </style>
+                        <li>@Html.ActionLink("Dashboard", "Index", "Doctor", new { area = "" }, new { @class = "nav-link text-white fw-bold" })</li>
+                    }
+                    @if (User.IsInRole("Pharmacist"))
+                    {
+                        <style>
+                            .navbar {
+                                background-color: var(--dGreen) !important;
+                            }
+                        </style>
+                        <li>@Html.ActionLink("Dashboard", "ProductsList", "Pharmacist", new { area = "" }, new { @class = "nav-link text-white fw-bold" })</li>
+                        <li>@Html.ActionLink("Visualizza tutti gli ordini", "SalesDetails", "Pharmacist", new { area = "" }, new { @class = "nav-link text-white fw-bold" })</li>
+                        <li>@Html.ActionLink("Cerca ordini", "Search", "Pharmacist", new { area = "" }, new { @class = "nav-link text-white fw-bold" })</li>
+                    }
+                </ul>
+                <ul class="navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
                         <li>
                             @using (Html.BeginForm("Logout", "Auth", FormMethod.Post, new { id = "logoutForm" }))
                             {
-                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link text-white fw-bold">Logout</a>
                             }
                         </li>
                     }
@@ -43,7 +66,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="">
             <p>&copy; @DateTime.Now.Year - Veterinaria</p>
         </footer>
     </div>

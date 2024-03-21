@@ -4,8 +4,9 @@
     ViewBag.Title = "Home";
 }
 
+
+
 <div class="container mt-5">
-    <h2 class="mb-4">Benvenuto!</h2>
 
     @if (TempData["ErrorMessage"] != null)
     {
@@ -14,42 +15,99 @@
         </div>
     }
 
-    <div class="row">
 
-        <!-- Tabella Ammissioni -->
-        <div class="col-lg-8 mb-4">
-            <h3 class="mb-3">Ultimi Ricoveri</h3>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Data ammissione</th>
-                            <th>Immagine</th>
-                            <th>ID Animale</th>
-                            <th>Dimissioni</th>
-                            <th>Prezzo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.RescueAdmissions)
-                        {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
-                                <td><img src="@item.PetImageUrl" class="img-fluid" alt="Immagine Animale" style="max-width: 300px; max-height: 300px;"></td>
-                                <td>@Html.DisplayFor(modelItem => item.PetId)</td>
-                                <td>@Html.DisplayFor(modelItem => item.EndAdmissionDate)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Price) €</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+
+    <!-- Tabella Ammissioni -->
+    <div class="mb-4 w-50 mx-auto">
+        <h3 class="mb-3">Ultimi arrivati!</h3>
+        <div id="rescueCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" style="height: 100%;">
+                @for (int i = 0; i < Model.RescueAdmissions.Count(); i++)
+                {
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <img src="@Model.RescueAdmissions.ElementAt(i).PetImageUrl" class="w-100" alt="Immagine Animale" style="border-radius:25px;" />
+
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Data ammissione: @Html.DisplayFor(modelItem => Model.RescueAdmissions.ElementAt(i).AdmissionDate)</h5>
+                    </div>
+                }
+
+            </div>
+            <a class="carousel-control-prev text-decoration-none" href="#rescueCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Precedente</span>
+            </a>
+            <a class="carousel-control-next text-decoration-none" href="#rescueCarousel" role="button" data-slide="next">
+
+                <span class="sr-only">Successivo</span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <style>
+        #rescueCarousel {
+            height: 500px;
+            background-color: #F7C3A1;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        @@media (max-width: 991px) {
+            #rescueCarousel {
+                height: 400px;
+            }
+        }
+
+        @@media (max-width: 767px) {
+            #rescueCarousel {
+                height: 300px;
+            }
+        }
+
+        @@media (max-width: 575px) {
+            #rescueCarousel {
+                height: 200px;
+            }
+        }
+    </style>
+    <!-- Ricerca per Microchip -->
+    <div class="mt-5">
+        <div class="input-group mb-3 mt-5 d-flex justify-content-center">
+            <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero di microchip" aria-label="Numero di Microchip" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); " />
+            <button class="btn btn-outline-primary" type="button" id="searchButton" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);">Cerca Animale</button>
+        </div>
+    </div>
+    <!-- Info Animale -->
+    <div class="pet-info-container mt-4" id="petInfo" style="display:none;">
+        <div class="card" style="max-width: 540px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="" class="img-fluid rounded-start" id="petImage" alt="Immagine Animale">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Il tuo cucciolo è qui da noi!</h5>
+                        <p class="card-text">Nome: <span id="petName"></span></p>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    <style>
+        .pet-info-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    </style>
 
-        <!-- Form di Login centrato -->
-        <div class="col-lg-4 mt-5">
-            <div class="border p-4 rounded">
-                <h3 class="text-center mb-4">Login</h3>
+    <!-- Form di Login centrato -->
+    <div class="m-auto w-50" style="margin-bottom: 100px!important;">
+        <div class="col-12 mt-5">
+            <div class=" border py-4 rounded justify-content-center" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);">
+                <h3 class="text-center mb-4">Login Personale Medico</h3>
                 @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
@@ -73,36 +131,9 @@
             </div>
         </div>
     </div>
-
-    <!-- Ricerca per Microchip -->
-    <div class="row mt-4">
-        <div class="col">
-            <div class="input-group mb-3">
-                <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero di microchip" aria-label="Numero di Microchip">
-                <button class="btn btn-outline-secondary" type="button" id="searchButton">Cerca Animale</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Info Animale -->
-    <div class="row">
-        <div class="col" id="petInfo" style="display:none;">
-            <div class="card" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="" class="img-fluid rounded-start" id="petImage" alt="Immagine Animale">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Il tuo cucciolo è qui da noi!</h5>
-                            <p class="card-text">Nome: <span id="petName"></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+
 
 <script>
     $(document).ready(function() {
@@ -134,3 +165,9 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel();
+    });
+</script>
+
