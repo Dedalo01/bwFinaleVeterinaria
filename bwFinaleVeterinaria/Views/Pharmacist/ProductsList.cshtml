@@ -1,0 +1,64 @@
+﻿﻿@model IEnumerable<bwFinaleVeterinaria.Models.Product>
+
+@{
+    ViewBag.Title = "Products List";
+}
+
+<h2 class="mb-3 text-center">Lista Prodotti</h2>
+<hr />
+
+<h3>Prodotti Alimentari</h3>
+<table class="table table-bordered">
+    <thead class="text-center">
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Usi Possibili</th>
+            <th>Azienda Produttrice</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        @foreach (var product in Model.Where(p => p.Type == "Alimentare"))
+        {
+            <tr>
+                <td><a href="@Url.Action("ProductDetails", "Pharmacist", new { id = product.Id })">@product.Name</a></td>
+                <td>@product.Type</td>
+                <td>@product.PossibleUses</td>
+                <td><a href="@Url.Action("CompanyDetails", "Pharmacist", new { id = product.CompanyId })">@product.Company.Name</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Prodotti Farmaceutici</h3>
+<table class="table table-bordered">
+    <thead class="text-center">
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Usi Possibili</th>
+            <th>Azienda Produttrice</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        @foreach (var product in Model.Where(p => p.Type == "Farmaco"))
+        {
+            <tr>
+                <td><a href="@Url.Action("ProductDetails", "Pharmacist", new { id = product.Id })">@product.Name</a></td>
+                <td>@product.Type</td>
+                <td>@product.PossibleUses</td>
+                <td><a href="@Url.Action("CompanyDetails", "Pharmacist", new { id = product.CompanyId })">@product.Company.Name</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ProductAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Prodotto</a>
+
+<br />
+
+<a href="@Url.Action("CompanyAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Azienda</a>
+
+<br />
+
+<a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-success my-2 p-3">Registra un Ordine</a>
