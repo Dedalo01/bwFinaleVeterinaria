@@ -72,7 +72,7 @@
                 e.preventDefault();
                 var productName = $('#productName').val();
                 $.ajax({
-                    url: '@Url.Action("SearchProduct", "Pharmacist")',
+                    url: '@Url.Action("SearchProduct", "Api")',
                     type: 'POST',
                     data: { productName: productName },
                     success: function (result) {
@@ -88,7 +88,7 @@
                 e.preventDefault();
                 var fiscalCode = $('#fiscalCode').val();
                 $.ajax({
-                    url: '@Url.Action("SearchByFiscalCode", "Pharmacist")',
+                    url: '@Url.Action("SearchByFiscalCode", "Api")',
                     type: 'POST',
                     data: { fiscalCode: fiscalCode },
                     success: function (result) {
@@ -104,7 +104,7 @@
                 e.preventDefault();
                 var saleDate = $('#saleDate').val();
                 $.ajax({
-                    url: '@Url.Action("SearchByDate", "Pharmacist")',
+                    url: '@Url.Action("SearchByDate", "Api")',
                     type: 'POST',
                     data: { saleDate: saleDate },
                     success: function (result) {

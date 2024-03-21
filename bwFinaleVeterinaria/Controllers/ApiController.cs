@@ -1,6 +1,8 @@
 ﻿using bwFinaleVeterinaria.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 
@@ -50,6 +52,47 @@ namespace bwFinaleVeterinaria.Controllers
             }
 
             return PartialView("~/Views/Doctor/_AnimalHistoryPartial.cshtml", animal.Examinations.OrderByDescending(e => e.ExaminationDate));
+        }
+
+
+        // POST: Pharmacist/SearchProduct
+        [HttpPost]
+        public async Task<ActionResult> SearchProduct(string productName)
+        {
+            var product = await db.Products
+                .Include(p => p.Cabinets)
+                .Include(p => p.Cabinets.Select(c => c.Drawer))
+                .FirstOrDefaultAsync(p => p.Name == productName);
+
+            if (product == null)
+            {
+                return PartialView("~/Views/Pharmacist/_ProductSearchResults.cshtml", null);
+            }
+
+            return PartialView("~/Views/Pharmacist/_ProductSearchResults.cshtml", product);
+        }
+
+        // POST: Pharmacist/SearchByFiscalCode
+        [HttpPost]
+        public async Task<ActionResult> SearchByFiscalCode(string fiscalCode)
+        {
+            var sales = await db.Sales
+                .Include(s => s.Owner)
+                .Where(s => s.Owner.FiscalCode == fiscalCode)
+                .ToListAsync();
+
+            return PartialView("~/Views/Pharmacist/_FiscalCodeSearchResults.cshtml", sales);
+        }
+
+        // POST: Pharmacist/SearchByDate
+        [HttpPost]
+        public async Task<ActionResult> SearchByDate(DateTime saleDate)
+        {
+            var sales = await db.Sales
+                .Where(s => DbFunctions.TruncateTime(s.SaleDate) == saleDate.Date)
+                .ToListAsync();
+
+            return PartialView("~/Views/Pharmacist/_DateSearchResults.cshtml", sales);
         }
     }
 }
