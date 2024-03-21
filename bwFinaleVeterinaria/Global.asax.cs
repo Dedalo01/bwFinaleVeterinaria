@@ -415,7 +415,7 @@ namespace bwFinaleVeterinaria
                     {
                         Id = 3,
                         Username = "Patricia",
-                        Password = "LaFarmacista",
+                        Password = "123",
                         RoleId = 2
                     };
 
