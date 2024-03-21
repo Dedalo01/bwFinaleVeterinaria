@@ -1,33 +1,136 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model bwFinaleVeterinaria.Models.HomeView
+
+@{
+    ViewBag.Title = "Home";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<div class="container mt-5">
+    <h2 class="mb-4">Benvenuto!</h2>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"].ToString()
+        </div>
+    }
 
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+
+        <!-- Tabella Ammissioni -->
+        <div class="col-lg-8 mb-4">
+            <h3 class="mb-3">Ultimi Ricoveri</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Data ammissione</th>
+                            <th>Immagine</th>
+                            <th>ID Animale</th>
+                            <th>Dimissioni</th>
+                            <th>Prezzo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.RescueAdmissions)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
+                                <td><img src="@item.PetImageUrl" class="img-fluid" alt="Immagine Animale" style="max-width: 300px; max-height: 300px;"></td>
+                                <td>@Html.DisplayFor(modelItem => item.PetId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.EndAdmissionDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Price) €</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Form di Login centrato -->
+        <div class="col-lg-4 mt-5">
+            <div class="border p-4 rounded">
+                <h3 class="text-center mb-4">Login</h3>
+                @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3 text-center">
+                        @Html.LabelFor(m => m.Employee.Username, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control mx-auto", style = "width: auto;" })
+                        @Html.ValidationMessageFor(m => m.Employee.Username, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3 text-center">
+                        @Html.LabelFor(m => m.Employee.Password, new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control mx-auto", style = "width: auto;" })
+                        @Html.ValidationMessageFor(m => m.Employee.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary mx-auto">Login</button>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
-</main>
+
+    <!-- Ricerca per Microchip -->
+    <div class="row mt-4">
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero di microchip" aria-label="Numero di Microchip">
+                <button class="btn btn-outline-secondary" type="button" id="searchButton">Cerca Animale</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Animale -->
+    <div class="row">
+        <div class="col" id="petInfo" style="display:none;">
+            <div class="card" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="" class="img-fluid rounded-start" id="petImage" alt="Immagine Animale">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Il tuo cucciolo è qui da noi!</h5>
+                            <p class="card-text">Nome: <span id="petName"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#searchButton").click(function() {
+            var microchip = $("#microchipInput").val();
+            $.ajax({
+                url: '@Url.Action("GetPetByMicrochip", "Api")',
+                type: 'GET',
+                dataType: 'json',
+                data: { microchip: microchip },
+                success: function(data) {
+                    if(data.success) {
+                        $("#petName").text(data.pet.Name);
+                        if(data.pet.AdmissionInfo && data.pet.AdmissionInfo.PetImageUrl) {
+                            $("#petImage").attr("src", data.pet.AdmissionInfo.PetImageUrl);
+                        } else {
+                            $("#petImage").attr("src", "https://media.tenor.com/sxrhvUa9VvQAAAAM/dance-till-you-are-dead-meme.gif");
+                        }
+                        $("#petInfo").show();
+                    } else {
+                        alert("Animale non trovato.");
+                        $("#petInfo").hide();
+                    }
+                },
+                error: function() {
+                    alert("Si è verificato un errore nella ricerca.");
+                }
+            });
+        });
+    });
+</script>
