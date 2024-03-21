@@ -162,7 +162,7 @@ namespace bwFinaleVeterinaria
                         Id = 1,
                         ExaminationDate = new DateTime(2023, 12, 15),
                         ObjectiveExamimation = "L'Animale fa miao...",
-                        TreatmentDescription = "Crocchette Al Pistacchio di Bronte",
+                        TreatmentDescription = "consiglio Crocchette Al Pistacchio di Bronte perchè hanno benefici divini",
                         PetId = 5
                     };
 
@@ -171,7 +171,7 @@ namespace bwFinaleVeterinaria
                         Id = 2,
                         ExaminationDate = new DateTime(2024, 01, 15),
                         ObjectiveExamimation = "L'Animale si è rotto il polso...",
-                        TreatmentDescription = "Bendaggi",
+                        TreatmentDescription = "Bendaggi per il bolso",
                         PetId = 1
                     };
 
@@ -180,7 +180,7 @@ namespace bwFinaleVeterinaria
                         Id = 3,
                         ExaminationDate = new DateTime(2010, 05, 13),
                         ObjectiveExamimation = "Vescica debole",
-                        TreatmentDescription = "Viagra",
+                        TreatmentDescription = "Consiglio Viagra per forte sensualità",
                         PetId = 2
                     };
 

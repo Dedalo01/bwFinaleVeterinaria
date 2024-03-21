@@ -221,6 +221,7 @@
     <Content Include="Views\Pharmacist\_ProductSearchResults.cshtml" />
     <Content Include="Views\Pharmacist\_FiscalCodeSearchResults.cshtml" />
     <Content Include="Views\Pharmacist\_DateSearchResults.cshtml" />
+    <Content Include="Views\Pharmacist\SalesDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

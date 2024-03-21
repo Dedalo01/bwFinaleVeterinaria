@@ -51,6 +51,15 @@ namespace bwFinaleVeterinaria.Controllers
             return View(viewModel);
         }
 
+        public ActionResult SalesDetails()
+        {
+            var sales = _db.Sales.Include("Product").Include("Owner").Include("Examination").ToList();
+
+            // Raggruppa le vendite per proprietario
+            var salesByOwner = sales.GroupBy(s => s.OwnerId);
+
+            return View(salesByOwner);
+        }
 
 
         public ActionResult ProductsList()

@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<IGrouping<int, bwFinaleVeterinaria.Models.Sale>>
+
+@{
+    ViewBag.Title = "Sales Details";
+}
+<link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
+
+<h1 class="my-2 text-center">Ordini</h1>
+
+<hr class="divider" />
+
+@foreach (var group in Model)
+{
+    var ownerName = group.First().Owner.Name;
+
+    <h3>@ownerName</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Sale Date</th>
+                <th>Treatment Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sale in group)
+            {
+                <tr>
+                    <td>@sale.Product.Name</td>
+                    <td>@sale.SaleDate.ToString("yyyy-MM-dd")</td>
+                    <td>@sale.Examination.TreatmentDescription</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="buttonsCointainer">
+    <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary my-4">Torna alla lista prodotti</a>
+</div>
