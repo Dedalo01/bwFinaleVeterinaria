@@ -198,7 +198,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Doctor\AddOwner.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\AddExamination.cshtml" />
     <Content Include="Views\Doctor\AddPet.cshtml" />
     <Content Include="Views\Doctor\AddStray.cshtml" />
   </ItemGroup>
