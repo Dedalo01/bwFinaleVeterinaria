@@ -128,6 +128,6 @@ namespace bwFinaleVeterinaria.Controllers
 
             TempData["Fail"] = "La visita NON è stata aggiunta correttamente.";
             return View(exam);
-        }
+        } 
     }
 }

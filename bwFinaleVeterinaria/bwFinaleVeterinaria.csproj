@@ -201,6 +201,7 @@
     <Content Include="Views\Doctor\AddOwner.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\AddExamination.cshtml" />
+    <Content Include="Views\Doctor\_AnimalHistoryPartial.cshtml" />
     <Content Include="Views\Doctor\AddPet.cshtml" />
     <Content Include="Views\Doctor\AddStray.cshtml" />
   </ItemGroup>
