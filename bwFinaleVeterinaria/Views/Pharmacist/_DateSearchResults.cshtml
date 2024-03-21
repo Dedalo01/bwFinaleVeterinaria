@@ -1,0 +1,30 @@
+﻿@model IEnumerable<bwFinaleVeterinaria.Models.Sale>
+
+<div>
+    <h3>Sales for Date: @ViewBag.SaleDate</h3>
+    <hr />
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sale Date</th>
+                    <th>Owner Fiscal Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sale in Model)
+                {
+                    <tr>
+                        <td>@sale.SaleDate</td>
+                        <td>@sale.Owner.FiscalCode</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No sales found for this date.</p>
+    }
+</div>
