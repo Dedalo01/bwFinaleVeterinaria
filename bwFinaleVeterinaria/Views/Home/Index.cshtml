@@ -25,11 +25,11 @@
                 @for (int i = 0; i < Model.RescueAdmissions.Count(); i++)
                 {
                     <div class="carousel-item @(i == 0 ? "active" : "")">
-                        <img src="@Model.RescueAdmissions.ElementAt(i).PetImageUrl" class="w-100" alt="Immagine Animale" style="border-radius:25px;" />
+                        <img src="@Model.RescueAdmissions.ElementAt(i).PetImageUrl"  alt="Immagine Animale" style="border-radius:25px;" />
 
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Data ammissione: @Html.DisplayFor(modelItem => Model.RescueAdmissions.ElementAt(i).AdmissionDate)</h5>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Data ammissione: @Html.DisplayFor(modelItem => Model.RescueAdmissions.ElementAt(i).AdmissionDate)</h5>
+                        </div>
                     </div>
                 }
 
@@ -52,6 +52,8 @@
             border-radius: 25px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
         }
+
+        
 
         @@media (max-width: 991px) {
             #rescueCarousel {
@@ -133,9 +135,9 @@
     </div>
 </div>
 
+@section scripts {
 
-
-<script>
+    <script>
     $(document).ready(function() {
         $("#searchButton").click(function() {
             var microchip = $("#microchipInput").val();
@@ -163,11 +165,17 @@
                 }
             });
         });
+
+
+        $(document).ready(function () {
+            $('.carousel').carousel();
+        });
+
     });
-</script>
-<script>
-    $(document).ready(function () {
-        $('.carousel').carousel();
-    });
-</script>
+    </script>
+
+
+}
+
+
 
