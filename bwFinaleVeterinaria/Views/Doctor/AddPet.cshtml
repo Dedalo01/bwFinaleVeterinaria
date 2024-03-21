@@ -26,14 +26,14 @@
     </div>
 }
 
-<div class="">
+<section class="main-content">
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label for="ownerId">Seleziona Proprietario</label>
+            <label class="form-label" for="ownerId">Seleziona Proprietario</label>
             <select name="ownerId" id="ownerId">
                 <option value="-1">--- Seleziona Proprietario ---</option>
                 @foreach (var owner in TempData["owners"] as List<bwFinaleVeterinaria.Models.Owner>)
@@ -86,6 +86,6 @@
 
         <button type="submit">Aggiungi Animale</button>
     }
-</div>
+</section>
 
 
