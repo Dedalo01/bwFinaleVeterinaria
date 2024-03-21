@@ -1,8 +1,9 @@
 ﻿@{
     ViewBag.Title = "Search";
 }
+<link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
-<div>
+<div class="buttonsCointainer">
     <button type="button" class="btn btn-primary" onclick="showProductSearch()">Search by Product</button>
     <button type="button" class="btn btn-primary" onclick="showFiscalCodeSearch()">Search by Fiscal Code</button>
     <button type="button" class="btn btn-primary" onclick="showDateSearch()">Search by Date</button>
@@ -15,7 +16,9 @@
             @Html.Label("Search Product name:")
             @Html.TextBox("productName", null, new { @class = "form-control", id = "productName" })
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <div class="buttonsCointainer">
+            <button type="submit" class="btn btn-primary my-3">Search</button>
+        </div>
     }
 </div>
 
@@ -26,7 +29,9 @@
             @Html.Label("Fiscal Code:")
             @Html.TextBox("fiscalCode", null, new { @class = "form-control", id = "fiscalCode" })
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <div class="buttonsCointainer">
+            <button type="submit" class="btn btn-primary my-3">Search</button>
+        </div>
     }
 </div>
 
@@ -37,12 +42,19 @@
             @Html.Label("Sale Date:")
             @Html.TextBox("saleDate", null, new { @class = "form-control", id = "saleDate", type = "date" })
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+
+        <div class="buttonsCointainer">
+            <button type="submit" class="btn btn-primary my-3">Search</button>
+        </div>
     }
 </div>
 
 <div id="searchResultsContainer">
     <!-- Search results will be displayed here -->
+</div>
+
+<div class="buttonsCointainer">
+    <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary my-4">Torna alla lista prodotti</a>
 </div>
 
 @section scripts {
@@ -117,4 +129,6 @@
             });
         });
     </script>
+
+
 }

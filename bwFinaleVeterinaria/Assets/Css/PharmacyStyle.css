@@ -1,0 +1,40 @@
+﻿body {
+}
+
+
+h1, h2, h3 {
+    color: var(--dGreen) !important;
+}
+
+table, .divider, tbody, .borderTable {
+    border: 3px solid var(--dGreen) !important;
+}
+
+
+.buttonsCointainer a, .buttonsCointainer button {
+    background-color: var(--dGreen) !important;
+    color: var(--champ) !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 5px solid var(--lGreen) !important;
+    border-radius: 10px !important;
+}
+
+table a {
+    color: var(--linkGreen);
+    font-weight: bold;
+}
+
+
+.formsContainer {
+    background-color: var(--dCham);
+    padding: 50px;
+}
+
+.formsContainerReduced {
+    background-color: var(--dCham);
+    padding: 40px;
+    margin-right: auto;
+    display: inline-block;
+    overflow: auto;
+}

@@ -3,18 +3,19 @@
 @{
     ViewBag.Title = "Product Details";
 }
+<link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
-
-
-<div class="border border-black m-5 p-3 text-center">
-    <h1 class="card-title mb-2">@Model.Name</h1>
+<div class="m-5 p-5 text-center borderTable">
+    <h1 class="card-title mb-2 fs-1">@Model.Name</h1>
 
     <div class="my-2">
 
-        <h3 class="">Armadietto: @(Model.Cabinets.Any() ? Model.Cabinets.First().NumericCode : "N/A")</h3>
-        <h3 class="">Cassetto: @(Model.Cabinets.Any() ? Model.Cabinets.First().Drawer.DrawerNumber.ToString() : "N/A")</h3>
+        <h4 class="fs-2">Armadietto: @(Model.Cabinets.Any() ? Model.Cabinets.First().NumericCode : "N/A")</h4>
+        <h4 class="fs-2">Cassetto: @(Model.Cabinets.Any() ? Model.Cabinets.First().Drawer.DrawerNumber.ToString() : "N/A")</h4>
 
     </div>
+    <div class="buttonsCointainer">
+        <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary my-2">Torna alla Lista Prodotti</a>
+    </div>
 
-    <a href="@Url.Action("ProductsList", "Pharmacist")" class="btn btn-primary my-2">Torna alla Lista Prodotti</a>
 </div>

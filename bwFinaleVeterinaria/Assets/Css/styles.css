@@ -2,14 +2,15 @@
     --azure: #25CED1;
     --dAzure: #1EA2C6;
     --champ: #FCEADE;
-    --dCham: #F7C3A1; 
+    --dCham: #F7C3A1;
     --lGreen: #8FE378;
-    --dGreen: #71CE3B;
+    --dGreen: #44BD23;
+    --linkGreen: #2B7916;
     --white: #FFF;
 }
 
 .navbar {
-    background-color: var(--azure) !important;
+    background-color: var(--dGreen) !important;
 }
 
 body {

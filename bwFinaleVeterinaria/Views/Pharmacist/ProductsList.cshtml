@@ -4,10 +4,14 @@
     ViewBag.Title = "Products List";
 }
 
-<h2 class="mb-3 text-center">Lista Prodotti</h2>
-<hr />
+<link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
-<h3>Prodotti Alimentari</h3>
+
+
+<h2 class="mb-3 text-center">Lista Prodotti</h2>
+<hr class="divider" />
+
+<h3 class="mt-4 mb-1">Prodotti Alimentari</h3>
 <table class="table table-bordered">
     <thead class="text-center">
         <tr>
@@ -30,7 +34,7 @@
     </tbody>
 </table>
 
-<h3>Prodotti Farmaceutici</h3>
+<h3 class="mt-5 mb-1">Prodotti Farmaceutici</h3>
 <table class="table table-bordered">
     <thead class="text-center">
         <tr>
@@ -53,12 +57,19 @@
     </tbody>
 </table>
 
-<a href="@Url.Action("ProductAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Prodotto</a>
+<div class="text-center mt-2 buttonsCointainer">
 
-<br />
+    <a href="@Url.Action("ProductAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Prodotto</a>
 
-<a href="@Url.Action("CompanyAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Azienda</a>
+    <br />
 
-<br />
+    <a href="@Url.Action("CompanyAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Azienda</a>
 
-<a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-success my-2 p-3">Registra un Ordine</a>
+    <br />
+
+    <a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-primary my-2">Registra un Ordine</a>
+
+    <br />
+
+    <a href="@Url.Action("Search", "Pharmacist")" class="btn btn-primary my-2">Cerca Ordini</a>
+</div>
