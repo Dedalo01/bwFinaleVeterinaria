@@ -17,12 +17,15 @@ namespace bwFinaleVeterinaria.Models
 
         public int Id { get; set; }
 
+        [Display(Name = "Nome")]
         [Required(ErrorMessage = "Il campo è obbligatorio.")]
         public string Name { get; set; }
 
+        [Display(Name = "Cognome")]
         [Required(ErrorMessage = "Il campo è obbligatorio.")]
         public string Surname { get; set; }
 
+        [Display(Name = "Codice Fiscale")]
         [Required(ErrorMessage = "Il campo è obbligatorio.")]
         [StringLength(16, MinimumLength = 16, ErrorMessage = "Codice Fiscale non corretto.")]
         public string FiscalCode { get; set; }

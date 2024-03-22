@@ -31,7 +31,7 @@
         <div class="form-group mt-1">
             @Html.Label("petId", "Seleziona animale", new { @class = "control-label mb-1" })
             <select name="petId" id="petId" class="form-control text-center">
-                <option value="-1">--- Seleziona Animale ---</option>
+                <option class="text-center" value="-1">--- Seleziona Animale ---</option>
                 @if (TempData["Pets"] != null)
                 {
                     foreach (var pet in TempData["Pets"] as List<bwFinaleVeterinaria.Models.Pet>)
