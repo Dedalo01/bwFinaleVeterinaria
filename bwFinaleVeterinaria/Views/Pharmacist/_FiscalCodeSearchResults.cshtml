@@ -1,21 +1,23 @@
 ﻿@model IEnumerable<bwFinaleVeterinaria.Models.Sale>
 
 <div>
-    <h3>Sales for Fiscal Code: @ViewBag.FiscalCode</h3>
+    <h3>Vendite per codice fiscale: @ViewBag.FiscalCode</h3>
     <hr />
     @if (Model != null && Model.Any())
     {
         <table class="table">
             <thead>
                 <tr>
-                    <th>Sale Date</th>
-                    <th>Owner Fiscal Code</th>
+                    <th>MEDICINALE</th>
+                    <th>Data della vendita</th>
+                    <th>Codice fiscale del proprietario</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var sale in Model)
                 {
                     <tr>
+                        <td>@sale.Product.Name</td>
                         <td>@sale.SaleDate</td>
                         <td>@sale.Owner.FiscalCode</td>
                     </tr>
@@ -25,6 +27,6 @@
     }
     else
     {
-        <p>No sales found for this fiscal code.</p>
+        <p>Non sono state trovate vendite per questo codice fiscale.</p>
     }
 </div>
