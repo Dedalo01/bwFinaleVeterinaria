@@ -1,4 +1,4 @@
-﻿﻿@model IEnumerable<bwFinaleVeterinaria.Models.Product>
+﻿@model IEnumerable<bwFinaleVeterinaria.Models.Product>
 
 @{
     ViewBag.Title = "Products List";
@@ -6,12 +6,27 @@
 
 <link rel="stylesheet" href="~/Assets/Css/PharmacyStyle.css" />
 
+<style>
+    .table-rounded {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 20px; /* Puoi regolare questo valore per controllare il grado di arrotondamento */
+        overflow: hidden;
+    }
+
+        .table-rounded th,
+        .table-rounded td {
+            border: 1px solid #dee2e6; /* Puoi personalizzare lo stile del bordo se necessario */
+            padding: 8px;
+        }
+</style>
+
 <h2 class="mb-3 text-center">Lista Prodotti</h2>
 
 <hr class="divider" />
 
 <h3 class="mt-4 mb-1">Prodotti Alimentari</h3>
-<table class="table table-bordered">
+<table class="table table-bordered table-rounded">
     <thead class="text-center">
         <tr>
             <th>Nome</th>
@@ -34,7 +49,7 @@
 </table>
 
 <h3 class="mt-5 mb-1">Prodotti Farmaceutici</h3>
-<table class="table table-bordered">
+<table class="table table-bordered table-rounded">
     <thead class="text-center">
         <tr>
             <th>Nome</th>
@@ -57,18 +72,10 @@
 </table>
 
 <div class="text-center mt-2 buttonsCointainer">
-
     <a href="@Url.Action("ProductAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Prodotto</a>
-
     <br />
-
     <a href="@Url.Action("CompanyAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Azienda</a>
-
     <br />
-
     <a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-primary my-2">Registra un Ordine</a>
-
     <br />
-
-
 </div>
