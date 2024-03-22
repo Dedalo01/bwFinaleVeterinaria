@@ -20,7 +20,18 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
         <div class="container">
             <img src="~/Assets/Img/FarmaciaLogoNoBack.png" style="width:60px;" />
-            @Html.ActionLink("Veterinaria", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-bold" })
+            @if (User.IsInRole("Doctor"))
+            {
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold">Veterinaria</a>
+            }
+            else if (User.IsInRole("Pharmacist"))
+            {
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold">Veterinaria</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold" style="color: #7D6151;">Veterinaria</a>
+            }
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -65,16 +76,11 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer class="">
-            <p>&copy; @DateTime.Now.Year - Veterinaria</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
 
 </body>
 </html>

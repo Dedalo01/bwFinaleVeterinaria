@@ -5,60 +5,68 @@
 }
 
 
-
+<style>
+    .btn:hover {
+        background-color: #AF8771 !important;
+        transition: 0.3s ease !important;
+    }
+</style>
 <div class="container mt-5">
 
     @if (TempData["ErrorMessage"] != null)
     {
-        <div class="alert alert-danger" role="alert">
-            @TempData["ErrorMessage"].ToString()
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["ErrorMessage"].ToString())
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+            </button>
         </div>
     }
 
 
 
+
     <!-- Tabella Ammissioni -->
-<div class="mb-4 w-50 mx-auto">
-    <h3 class="mb-3">Ultimi arrivati!</h3>
-    <div id="rescueCarousel" class="carousel slide" data-ride="carousel" style="height: 300px; overflow: hidden;">
-        <div class="carousel-inner" style="height: 100%;">
-            @foreach (var item in Model.RescueAdmissions)
-            {
-             <div class="carousel-item @(item == Model.RescueAdmissions.First() ? "active" : "")" style="height: 100%;">
-                <img src="@item.PetImageUrl" class="d-block w-100 h-100" alt="Immagine Animale" style="object-fit: contain; border-radius: 25px;" />
-                <div class="carousel-caption d-none d-md-block" style="position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,0.5); padding: 10px;">
-                <h5 style="color: white;">Data ammissione: @item.AdmissionDate</h5>
+    <div class="mb-4 w-50 mx-auto">
+        <h3 class="mb-3" style="color: #7D6151; ">Ultimi arrivati!</h3>
+        <div id="rescueCarousel" class="carousel slide" data-ride="carousel" style="height: 300px; overflow: hidden;">
+            <div class="carousel-inner" style="height: 100%;">
+                @foreach (var item in Model.RescueAdmissions)
+                {
+                    <div class="carousel-item @(item == Model.RescueAdmissions.First() ? "active" : "")" style="height: 100%;">
+                        <img src="@item.PetImageUrl" class="d-block w-100 h-100" alt="Immagine Animale" style="object-fit: contain; border-radius: 25px;" />
+                        <div class="carousel-caption d-none d-md-block" style="position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,0.5); padding: 10px;">
+                            <h5 style="color: white;">Data ammissione: @item.AdmissionDate</h5>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+            <a class="carousel-control-prev text-decoration-none fw-bold" href="#rescueCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Precedente</span>
+            </a>
+            <a class="carousel-control-next text-decoration-none fw-bold" href="#rescueCarousel" role="button" data-slide="next">
+                <span class="sr-only">Successivo</span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
         </div>
-        <a class="carousel-control-prev text-decoration-none" href="#rescueCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Precedente</span>
-        </a>
-        <a class="carousel-control-next text-decoration-none" href="#rescueCarousel" role="button" data-slide="next">
-            <span class="sr-only">Successivo</span>
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </a>
     </div>
-</div>
     <style>
         .carousel-inner {
             display: flex;
         }
 
         .carousel-item {
-            flex: 0 0 100%; 
+            flex: 0 0 100%;
             transition: transform 0.6s ease-in-out;
         }
 
-        .carousel-item.active {
-            transform: translateX(0); 
-        }
+            .carousel-item.active {
+                transform: translateX(0);
+            }
 
-        .carousel-item-next, .carousel-item-prev, .carousel-item.active {
-            display: flex;
-        }
+            .carousel-item-next, .carousel-item-prev, .carousel-item.active {
+                display: flex;
+            }
 
         .carousel-item-next, .carousel-item-prev {
             position: absolute;
@@ -67,12 +75,13 @@
         }
 
         .carousel-item-next {
-            transform: translateX(100%); 
+            transform: translateX(100%);
         }
 
         .carousel-item-prev {
-            transform: translateX(-100%); 
+            transform: translateX(-100%);
         }
+
         #rescueCarousel {
             height: 500px;
             background-color: #F7C3A1;
@@ -80,7 +89,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
-        
+
         @@media (max-width: 991px) {
             #rescueCarousel {
                 height: 400px;
@@ -103,19 +112,19 @@
     <div class="mt-5">
         <div class="input-group mb-3 mt-5 d-flex justify-content-center">
             <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero di microchip" aria-label="Numero di Microchip" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); " />
-            <button class="btn btn-outline-primary" type="button" id="searchButton" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);">Cerca Animale</button>
+            <button class="btn text-white" type="button" id="searchButton" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08) ; background-color: #7D6151;">Cerca Animale</button>
         </div>
     </div>
     <!-- Info Animale -->
     <div class="pet-info-container mt-4" id="petInfo" style="display:none;">
-        <div class="card" style="max-width: 540px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);">
+        <div class="card" style="max-width: 540px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); background-color: #F7C3A1">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="" class="img-fluid rounded-start" id="petImage" alt="Immagine Animale">
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Il tuo cucciolo è qui da noi!</h5>
+                    <div class="card-body" style="color: #7D6151">
+                        <h5 class="card-title" style="color: #7D6151">Il tuo cucciolo è qui da noi!</h5>
                         <p class="card-text">Nome: <span id="petName"></span></p>
                     </div>
                 </div>
@@ -134,26 +143,31 @@
     <!-- Form di Login centrato -->
     <div class="m-auto w-50" style="margin-bottom: 100px!important;">
         <div class="col-12 mt-5">
-            <div class=" border py-4 rounded justify-content-center" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);">
-                <h3 class="text-center mb-4">Login Personale Medico</h3>
+            <div class=" border py-4 rounded justify-content-center" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); background-color: #F7C3A1 ">
+                <h3 class="text-center mb-4" style="color: #7D6151 ">Login Personale Medico</h3>
                 @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-
-                    <div class="mb-3 text-center">
+                <style>
+                    .form-control:focus {
+                        border-color: #7D6151 !important;
+                        box-shadow: 0 0 0 0.2rem #7D6151 !important;
+                    }
+                </style>
+                    <div class="mb-3 text-center fw-bold" style="letter-spacing: 0.3px; color: #7D6151">
                         @Html.LabelFor(m => m.Employee.Username, new { @class = "form-label" })
                         @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control mx-auto", style = "width: auto;" })
                         @Html.ValidationMessageFor(m => m.Employee.Username, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="mb-3 text-center">
+                    <div class="mb-3 text-center fw-bold"style="letter-spacing: 0.3px; color: #7D6151">
                         @Html.LabelFor(m => m.Employee.Password, new { @class = "form-label" })
                         @Html.PasswordFor(m => m.Employee.Password, new { @class = "form-control mx-auto", style = "width: auto;" })
                         @Html.ValidationMessageFor(m => m.Employee.Password, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary mx-auto">Login</button>
+                        <button type="submit" class="btn text-white mx-auto" style="background-color: #7D6151;">Login</button>
                     </div>
                 }
             </div>
