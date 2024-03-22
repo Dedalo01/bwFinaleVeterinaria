@@ -19,11 +19,17 @@ table, .divider, tbody, .borderTable {
     border: 5px solid var(--lGreen) !important;
     border-radius: 10px !important;
 }
+.buttonsCointainer a:hover,
+.buttonsCointainer button:hover {
+        background-color: var(--linkGreen) !important;
+        border-color: var(--dGreen) !important;
+    }
 
-table a {
-    color: var(--linkGreen);
-    font-weight: bold;
-}
+
+    table a {
+        color: var(--linkGreen);
+        font-weight: bold;
+    }
 
 
 .formsContainer {
