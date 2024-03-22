@@ -19,11 +19,17 @@ table, .divider, tbody, .borderTable {
     border: 5px solid var(--lGreen) !important;
     border-radius: 10px !important;
 }
+.buttonsCointainer a:hover,
+.buttonsCointainer button:hover {
+        background-color: var(--linkGreen) !important;
+        border-color: var(--dGreen) !important;
+    }
 
-table a {
-    color: var(--linkGreen);
-    font-weight: bold;
-}
+
+    table a {
+        color: var(--linkGreen);
+        font-weight: bold;
+    }
 
 
 .formsContainer {
@@ -57,6 +63,10 @@ table a {
     animation: colorChange 2s infinite; 
 }
 
+.form-control:focus {
+    border-color: var(--lGreen) !important;
+    box-shadow: 0 0 0 0.2rem var(--lGreen) !important;
+}
 
 /* CABINETS DRAWINGS */
 @media (max-width: 1920px) {

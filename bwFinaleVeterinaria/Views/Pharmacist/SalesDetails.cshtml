@@ -16,27 +16,29 @@
     var ownerSurname = group.First().Owner.Surname;
     var ownerCode = group.First().Owner.FiscalCode;
 
-    <h3 class="mt-4 mb-2">@ownerName @ownerSurname --- @ownerCode</h3>
+    <div class="mb-5">
+        <h3 class="mt-4 mb-2">@ownerName @ownerSurname --- @ownerCode</h3>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nome Prodotto</th>
-                <th>Data d'Acquisto</th>
-                <th>Ricetta Del Medico</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var sale in group)
-            {
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>@sale.Product.Name</td>
-                    <td>@sale.SaleDate.ToString("yyyy-MM-dd")</td>
-                    <td>@sale.Examination.TreatmentDescription</td>
+                    <th>Nome Prodotto</th>
+                    <th>Data d'Acquisto</th>
+                    <th>Ricetta Del Medico</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var sale in group)
+                {
+                    <tr>
+                        <td>@sale.Product.Name</td>
+                        <td>@sale.SaleDate.ToString("yyyy-MM-dd")</td>
+                        <td>@sale.Examination.TreatmentDescription</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 <div class="buttonsCointainer">

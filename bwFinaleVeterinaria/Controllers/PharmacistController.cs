@@ -20,7 +20,7 @@ namespace bwFinaleVeterinaria.Controllers
                 Owners = _db.Owners.ToList(),
                 Examinations = _db.Examinations.ToList()
             };
-
+            
             return View("SalesAdd", viewModel);
         }
 
@@ -41,6 +41,8 @@ namespace bwFinaleVeterinaria.Controllers
                 _db.Sales.Add(sale);
                 _db.SaveChanges();
 
+                TempData["Success"] = "Prodotto Aggiunto con Successo";
+                
                 return RedirectToAction("SalesAdd");
             }
 
@@ -48,6 +50,7 @@ namespace bwFinaleVeterinaria.Controllers
             viewModel.Owners = _db.Owners.ToList();
             viewModel.Examinations = _db.Examinations.ToList();
 
+            TempData["Fail"] = "Problemi ad Aggiungere il Prodotto";
             return View(viewModel);
         }
 
@@ -133,8 +136,11 @@ namespace bwFinaleVeterinaria.Controllers
             {
                 _db.Companies.Add(company);
                 _db.SaveChanges();
-                return RedirectToAction("ProductsList", "Pharmacist");
+                TempData["Success"] = "Prodotto Aggiunto con Successo";
+                return RedirectToAction("CompanyAdd");
             }
+              
+            TempData["Fail"] = "Problemi ad Aggiungere il Prodotto";
             return View(company);
         }
 
