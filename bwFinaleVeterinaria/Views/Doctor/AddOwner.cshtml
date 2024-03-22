@@ -6,23 +6,23 @@
 
 <h2 class="text-center mt-4">Aggiungi Proprietario</h2>
 
+@if (TempData["Success"] != null)
+{
+    <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["Fail"] != null)
+{
+    <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Fail"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="d-flex justify-content-center mt-4">
-
-    @if (TempData["Success"] != null)
-    {
-        <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["Success"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (TempData["Fail"] != null)
-    {
-        <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["Fail"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
 
     @using (Html.BeginForm("AddOwner", "Doctor", FormMethod.Post, new { @class = "form" }))
     {
@@ -67,8 +67,18 @@
             font-weight: bold;
         }
 
-        h2, .form-group {
+        .btn-do:hover, .btn-dont:hover {
+            background-color: var(--btnHoverDoctor) !important;
+            color: white;
+        }
+
+        .form-group label {
             color: var(--azure) !important;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: var(--dAzure) !important;
             font-weight: bold;
         }
 

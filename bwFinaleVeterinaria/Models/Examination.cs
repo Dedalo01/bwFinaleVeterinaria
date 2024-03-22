@@ -17,16 +17,16 @@ namespace bwFinaleVeterinaria.Models
         public int Id { get; set; }
 
         [Display(Name = "Data della visita")]
-        [Required(ErrorMessage = "La data della visita è obbligatoria.")]
+        [Required(ErrorMessage = "Il campo è obbligatorio.")]
         [Column(TypeName = "smalldatetime")]
         public DateTime ExaminationDate { get; set; }
 
         [Display(Name = "Esame obiettivo")]
-        [Required(ErrorMessage = "Il campo Esame obiettivo è obbligatorio.")]
+        [Required(ErrorMessage = "Il campo è obbligatorio.")]
         public string ObjectiveExamimation { get; set; }
 
         [Display(Name = "Descrizione del trattamento")]
-        [Required(ErrorMessage = "Il campo descrizione del trattamento è obbligatorio.")]
+        [Required(ErrorMessage = "Il campo è obbligatorio.")]
         public string TreatmentDescription { get; set; }
 
         [Display(Name = "ID Animale")]

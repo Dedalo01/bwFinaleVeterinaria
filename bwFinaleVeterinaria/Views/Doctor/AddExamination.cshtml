@@ -5,24 +5,24 @@
 }
 
 <h2 class="text-center mt-4">Aggiungi Visita</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["Fail"] != null)
+{
+    <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Fail"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="d-flex justify-content-center mt-4">
-
-
-    @if (TempData["Success"] != null)
-    {
-        <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["Success"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (TempData["Fail"] != null)
-    {
-        <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["Fail"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
 
     @using (Html.BeginForm("AddExamination", "Doctor", FormMethod.Post, new { @class = "form" }))
     {
@@ -31,7 +31,7 @@
         <div class="form-group mt-1">
             @Html.Label("petId", "Seleziona animale", new { @class = "control-label mb-1" })
             <select name="petId" id="petId" class="form-control text-center">
-                <option value="-1">--- Seleziona Animale ---</option>
+                <option class="text-center" value="-1">--- Seleziona Animale ---</option>
                 @if (TempData["Pets"] != null)
                 {
                     foreach (var pet in TempData["Pets"] as List<bwFinaleVeterinaria.Models.Pet>)
@@ -73,9 +73,6 @@
 <div class="d-flex justify-content-center">
     <div id="animalHistoryContainer" class="mt-4" style="display: none;"></div>
 </div>
-
-
-
 
 
 @section scripts {
@@ -120,8 +117,18 @@
             font-weight: bold;
         }
 
-        h2, .form-group {
+            .btn-do:hover, .btn-dont:hover {
+                background-color: var(--btnHoverDoctor) !important;
+                color: white;
+            }
+
+        .form-group label {
             color: var(--azure) !important;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: var(--dAzure) !important;
             font-weight: bold;
         }
 
@@ -130,16 +137,53 @@
             box-shadow: 0 0 0 0.2rem var(--azure) !important;
         }
 
-        .exam-table thead th, .exam-table td {
-            color: var(--dAzure) !important;
-        }
-
-        .exam-table, .exam-table tbody tr td, .exam-table thead tr th {
-            border: 3px solid var(--azure) !important;
-        }
-
         .lastP {
             color: var(--dAzure) !important;
         }
+
+        /* Table */
+
+        .exam-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: var(--btnBorder);
+        }
+
+            .exam-table td, .exam-table th {
+                /*border: 2px solid #275897;*/
+                padding: 8px;
+            }
+
+            .exam-table tr:nth-child(even) {
+                background-color: var(--azure)
+            }
+
+            .exam-table tr:hover {
+                background-color: #275897;
+                color: white;
+            }
+
+            .exam-table thead th:first-child {
+                border-start-start-radius: 10px;
+            }
+
+            .exam-table thead th:last-child {
+                border-start-end-radius: 10px;
+            }
+
+            .exam-table tbody tr:last-child td:first-child {
+                border-end-start-radius: 10px;
+            }
+
+            .exam-table tbody tr:last-child td:last-child {
+                border-end-end-radius: 10px;
+            }
+
+            .exam-table th {
+                background-color: var(--dAzure);
+                color: white;
+                text-transform: uppercase;
+            }
+
     </style>
 }
