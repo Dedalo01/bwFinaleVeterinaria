@@ -30,7 +30,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-group">
+        <div class="form-group fix-margin-bottom">
             <h2>Aggiungi Animale</h2>
 
             <select name="ownerId" id="ownerId">
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="right-group">
             <div class="form-group">
                 @Html.LabelFor(p => p.Name, "Inserisci Nome dell'Animale:")
                 @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control" } })
@@ -84,7 +84,10 @@
                 @Html.ValidationMessageFor(p => p.Microchip, "", new { @class = "text-danger" })
             </div>
 
+            <div>
             <button class="btn" type="submit">Aggiungi Animale</button>
+            <a href="@Url.Action("Index")" class="btn">Torna Indietro</a>
+            </div>
         </div>
     }
 </section>
@@ -142,11 +145,44 @@
         }
         .main-content form {
             width:100%;
-            height:100%;
+            height:80%;
             display:flex;
             gap: 6rem;
             align-items: center;
             justify-content:center;
+        }
+
+        .right-group {
+            display:flex;
+            justify-content:center;
+            flex-direction: column;
+     
+        }
+
+        .right-group input {
+            width: 300px;
+        }
+
+     /*   .main-content .form-group {
+            display:flex;
+            align-content:center;
+            justify-content:center;
+            flex-direction:column;
+            text-align:center;
+        }*/
+
+        .main-content label {
+            font-weight:bold;
+            color: var(--azure);
+        }
+
+        .main-content label:not(first) {
+            margin-top: 10px;
+            margin-bottom: 3px;
+        }
+
+        .main-content .fix-margin-bottom {
+            margin-bottom: 14rem;
         }
 
         .main-content form h2 {
@@ -160,13 +196,13 @@
             margin-bottom: 5px;
         }
 
-        .main-content form button {
+        .main-content form .btn {
             background-color: var(--dAzure);
             margin-top: 25px;
             color: white;
         }
 
-        .main-content form button:hover {
+        .main-content form .btn:hover {
             background-color: var(--azure);
         }
     </style>
