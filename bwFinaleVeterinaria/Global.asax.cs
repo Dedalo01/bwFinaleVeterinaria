@@ -287,11 +287,22 @@ namespace bwFinaleVeterinaria
                         PetId = 8
                     };
 
+                    var exam6 = new Examination()
+                    {
+                        Id = 6,
+                        ExaminationDate = new DateTime(2015, 05, 13),
+                        ObjectiveExamimation = "Boh non lo so",
+                        TreatmentDescription = "Consiglio di fare qualcosa per evitare morte imminente ma non so cosa",
+                        PetId = 4
+                    };
+
+
                     db.Examinations.Add(exam1);
                     db.Examinations.Add(exam2);
                     db.Examinations.Add(exam3);
                     db.Examinations.Add(exam4);
                     db.Examinations.Add(exam5);
+                    db.Examinations.Add(exam6);
 
                     db.SaveChanges();
                 }
@@ -488,7 +499,7 @@ namespace bwFinaleVeterinaria
                     var sale5 = new Sale()
                     {
                         Id = 5,
-                        ExaminationId = 1,
+                        ExaminationId = 6,
                         ProductId = 8,
                         OwnerId = 5,
                         SaleDate = new DateTime(2024, 02, 08),
@@ -497,7 +508,7 @@ namespace bwFinaleVeterinaria
                     var sale6 = new Sale()
                     {
                         Id = 6,
-                        ExaminationId = 1,
+                        ExaminationId = 6,
                         ProductId = 9,
                         OwnerId = 5,
                         SaleDate = new DateTime(2024, 12, 02),
@@ -506,7 +517,7 @@ namespace bwFinaleVeterinaria
                     var sale7 = new Sale()
                     {
                         Id = 7,
-                        ExaminationId = 1,
+                        ExaminationId = 6,
                         ProductId = 7,
                         OwnerId = 5,
                         SaleDate = new DateTime(2024, 07, 17),
