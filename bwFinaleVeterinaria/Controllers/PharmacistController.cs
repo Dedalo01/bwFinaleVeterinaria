@@ -20,7 +20,6 @@ namespace bwFinaleVeterinaria.Controllers
                 Owners = _db.Owners.ToList(),
                 Examinations = _db.Examinations.ToList()
             };
-
             
             return View("SalesAdd", viewModel);
         }

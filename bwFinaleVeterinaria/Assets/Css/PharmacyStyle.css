@@ -63,3 +63,7 @@ table, .divider, tbody, .borderTable {
     animation: colorChange 2s infinite; 
 }
 
+.form-control:focus {
+    border-color: var(--lGreen) !important;
+    box-shadow: 0 0 0 0.2rem var(--lGreen) !important;
+}
