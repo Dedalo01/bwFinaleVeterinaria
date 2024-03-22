@@ -17,14 +17,14 @@ namespace bwFinaleVeterinaria.Models
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Il campo Nome è obbligatorio.")]
+        [Required(ErrorMessage = "Il campo è obbligatorio.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Il campo Cognome è obbligatorio.")]
+        [Required(ErrorMessage = "Il campo è obbligatorio.")]
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Il campo Codice Fiscale è obbligatorio.")]
-        [StringLength(16, MinimumLength = 16, ErrorMessage = "Il campo Codice Fiscale deve essere di lunghezza 16.")]
+        [Required(ErrorMessage = "Il campo è obbligatorio.")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = "Codice Fiscale non corretto.")]
         public string FiscalCode { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
