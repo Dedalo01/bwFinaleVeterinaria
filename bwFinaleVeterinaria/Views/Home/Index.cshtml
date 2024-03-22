@@ -5,7 +5,12 @@
 }
 
 
-
+<style>
+    .btn:hover {
+        background-color: #AF8771 !important;
+        transition: 0.3s ease !important;
+    }
+</style>
 <div class="container mt-5">
 
     @if (TempData["ErrorMessage"] != null)
@@ -143,7 +148,12 @@
                 @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-
+                <style>
+                    .form-control:focus {
+                        border-color: #7D6151 !important;
+                        box-shadow: 0 0 0 0.2rem #7D6151 !important;
+                    }
+                </style>
                     <div class="mb-3 text-center fw-bold" style="letter-spacing: 0.3px; color: #7D6151">
                         @Html.LabelFor(m => m.Employee.Username, new { @class = "form-label" })
                         @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control mx-auto", style = "width: auto;" })
