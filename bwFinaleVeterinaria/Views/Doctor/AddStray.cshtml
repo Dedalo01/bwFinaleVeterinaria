@@ -39,15 +39,10 @@
                 color: white;
             }
 
-
-
         h2, p {
             color: var(--dAzure);
         }
-
-        .divider {
-            border: 2px solid var(--dAzure);
-        }
+       
     </style>
 }
 
@@ -57,7 +52,6 @@
 
 <p class="text-center">Compila il form per salvare l'animale nel database</p>
 
-<hr class="divider" />
 
 @if (TempData["Success"] != null)
 {
@@ -126,7 +120,7 @@
         </div>
         <div class="text-center">
             <button class="btn light-btn" type="submit">Salva Randagio</button>
-            <a href="@Url.Action("Index")" class="btn">Torna Indietro</a>
+            <a href="@Url.Action("Index")" class="btn ms-3">Torna Indietro</a>
         </div>
     }
 </div>

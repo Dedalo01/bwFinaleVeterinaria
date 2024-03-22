@@ -8,9 +8,12 @@ using System.Web.Mvc;
 
 namespace bwFinaleVeterinaria.Controllers
 {
+
+    [Authorize(Roles = "Pharmacist, Doctor")]
     public class ApiController : Controller
     {
         private VeterinariaDbContext db = new VeterinariaDbContext();
+
 
         public JsonResult GetActiveAdmissions()
         {
@@ -95,6 +98,7 @@ namespace bwFinaleVeterinaria.Controllers
             return PartialView("~/Views/Pharmacist/_DateSearchResults.cshtml", sales);
         }
 
+        [AllowAnonymous]
         public ActionResult GetPetByMicrochip(string microchip)
         {
             var pet = db.Pets.Where(p => p.Microchip == microchip).Select(p => new

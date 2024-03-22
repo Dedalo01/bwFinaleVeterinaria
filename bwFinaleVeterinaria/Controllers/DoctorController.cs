@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace bwFinaleVeterinaria.Controllers
 {
+    [Authorize(Roles = "Doctor")]
     public class DoctorController : Controller
     {
         private VeterinariaDbContext db = new VeterinariaDbContext();

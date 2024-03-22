@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace bwFinaleVeterinaria.Controllers
 {
+    [Authorize(Roles = "Pharmacist")]
     public class PharmacistController : Controller
     {
         private readonly VeterinariaDbContext _db = new VeterinariaDbContext();
@@ -20,7 +21,7 @@ namespace bwFinaleVeterinaria.Controllers
                 Owners = _db.Owners.ToList(),
                 Examinations = _db.Examinations.ToList()
             };
-            
+
             return View("SalesAdd", viewModel);
         }
 
@@ -42,7 +43,7 @@ namespace bwFinaleVeterinaria.Controllers
                 _db.SaveChanges();
 
                 TempData["Success"] = "Prodotto Aggiunto con Successo";
-                
+
                 return RedirectToAction("SalesAdd");
             }
 
@@ -139,7 +140,7 @@ namespace bwFinaleVeterinaria.Controllers
                 TempData["Success"] = "Prodotto Aggiunto con Successo";
                 return RedirectToAction("CompanyAdd");
             }
-              
+
             TempData["Fail"] = "Problemi ad Aggiungere il Prodotto";
             return View(company);
         }
