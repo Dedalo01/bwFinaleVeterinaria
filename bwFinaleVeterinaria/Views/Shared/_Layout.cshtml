@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>@ViewBag.Title - Veterinaria</title>
+    <title>@ViewBag.Title - KAPIDHAINI SRL®</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/Assets/Img/FarmaciaLogoNoBack.png" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -22,15 +22,15 @@
             <img src="~/Assets/Img/FarmaciaLogoNoBack.png" style="width:60px;" />
             @if (User.IsInRole("Doctor"))
             {
-                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold">Veterinaria</a>
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold me-5">KAPIDHAINI SRL | VETERINARIA</a>
             }
             else if (User.IsInRole("Pharmacist"))
             {
-                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold">Veterinaria</a>
+        <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold me-5">KAPIDHAINI SRL | FARMACIA</a>
             }
             else
             {
-                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold" style="color: #7D6151;">Veterinaria</a>
+        <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand fw-bold me-5" style="color: #7D6151;">KAPIDHAINI SRL®</a>
             }
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
