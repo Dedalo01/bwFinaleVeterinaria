@@ -8,6 +8,22 @@
 
 <h2 class="mb-2">Aggiungi un azienda</h2>
 
+@if (TempData["Success"] != null)
+{
+    <div class="my-5 alert alert-success alert-dismissible fade show text-center" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["Fail"] != null)
+{
+    <div class="my-5 alert alert-danger alert-dismissible fade show text-center" role="alert">
+        @TempData["Fail"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
