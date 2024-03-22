@@ -10,6 +10,22 @@
 
 <hr class="divider" />
 
+<style>
+    .table-rounded {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 20px; 
+        overflow: hidden;
+    }
+
+        .table-rounded th,
+        .table-rounded td {
+            border: 1px solid #dee2e6; 
+            padding: 8px;
+        }
+</style>
+
+
 @foreach (var group in Model)
 {
     var ownerName = group.First().Owner.Name;
@@ -18,7 +34,7 @@
 
     <h3 class="mt-4 mb-2">@ownerName @ownerSurname --- @ownerCode</h3>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-rounded">
         <thead>
             <tr>
                 <th>Nome Prodotto</th>
