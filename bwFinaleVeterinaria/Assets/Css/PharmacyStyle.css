@@ -33,16 +33,20 @@ table, .divider, tbody, .borderTable {
 
 
 .formsContainer {
-    background-color: var(--dCham);
-    padding: 50px;
+    /*background-color: var(--dCham);*/
+    /*padding: 50px;*/
+    color: forestgreen;
+    font-weight:bold;
 }
 
 .formsContainerReduced {
-    background-color: var(--dCham);
-    padding: 40px;
+    /*background-color: var(--dCham);*/
+    /*padding: 40px;*/
     margin-right: auto;
     display: inline-block;
     overflow: auto;
+    color: forestgreen;
+    font-weight: bold;
 }
 
 @keyframes colorChange {

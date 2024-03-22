@@ -12,12 +12,14 @@
         border-spacing: 0;
         border-radius: 20px; 
         overflow: hidden;
+        
     }
 
     .table-rounded th,
     .table-rounded td {
-        border: 1px solid #dee2e6; 
+        border: 1px solid var(--lGreen); 
         padding: 8px;
+
     }
 </style>
 
@@ -72,10 +74,10 @@
 </table>
 
 <div class="text-center mt-2 buttonsCointainer">
-    <a href="@Url.Action("ProductAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Prodotto</a>
-    <br />
-    <a href="@Url.Action("CompanyAdd", "Pharmacist")" class="btn btn-primary my-2">Aggiungi Azienda</a>
-    <br />
-    <a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-primary my-2">Registra un Ordine</a>
-    <br />
+    <a href="@Url.Action("ProductAdd", "Pharmacist")" class="btn btn-primary m-2">Aggiungi Prodotto</a>
+  
+    <a href="@Url.Action("CompanyAdd", "Pharmacist")" class="btn btn-primary m-2">Aggiungi Azienda</a>
+    
+    <a href="@Url.Action("SalesAdd", "Pharmacist")" class="btn btn-primary m-2">Registra un Ordine</a>
+   
 </div>
