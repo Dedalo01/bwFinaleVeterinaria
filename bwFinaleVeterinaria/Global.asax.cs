@@ -51,9 +51,27 @@ namespace bwFinaleVeterinaria
                         FiscalCode = "LKJHGFDSAZXCVBNM",
                     };
 
+                    var gaetano = new Owner()
+                    {
+                        Id = 4,
+                        Name = "Gaetano",
+                        Surname = "Montaldo",
+                        FiscalCode = "FDPGFLC0GQIJK7VN",
+                    };
+
+                    var vecchietto = new Owner()
+                    {
+                        Id = 5,
+                        Name = "Vecchietto",
+                        Surname = "Old",
+                        FiscalCode = "RFLY7N8XLCGWZYMX",
+                    };
+
                     db.Owners.Add(bilbo);
                     db.Owners.Add(marco);
                     db.Owners.Add(giuseppe);
+                    db.Owners.Add(gaetano);
+                    db.Owners.Add(vecchietto);
 
                     db.SaveChanges();
                 }
@@ -116,11 +134,48 @@ namespace bwFinaleVeterinaria
                         CoatColor = "Verde",
                     };
 
+                    var agostino = new Pet()
+                    {
+                        Id = 6,
+                        Name = "Agostino",
+                        Type = "Rinoceronte",
+                        RegistrationDate = new DateTime(2023, 05, 04, 15, 13, 11),
+                        CoatColor = "Azzurro Napoli",
+                        BirthDate = new DateTime(2001, 09, 11),
+                        Microchip = "OT9ZEXMRTVJUXWC"
+                    };
+
+                    var cuoricino = new Pet()
+                    {
+                        Id = 7,
+                        Name = "Cuoricino",
+                        Type = "Capibara",
+                        RegistrationDate = new DateTime(2020, 11, 21, 15, 13, 11),
+                        CoatColor = "Grigio",
+                        BirthDate = new DateTime(2018, 03, 11),
+                        Microchip = "J0G419TVS2SFTRT"
+                    };
+
+                    var wailord = new Pet()
+                    {
+                        Id = 8,
+                        Name = "Wailord",
+                        Type = "Balena",
+                        RegistrationDate = new DateTime(2021, 11, 21, 15, 13, 11),
+                        CoatColor = "Grigio",
+                        BirthDate = new DateTime(1990, 03, 11),
+                        Microchip = "1O9FUZP8UVBQYL5"
+                    };
+
+
                     db.Pets.Add(bobbyDog);
                     db.Pets.Add(pongo);
                     db.Pets.Add(samira);
                     db.Pets.Add(samiro);
                     db.Pets.Add(tortuga);
+                    db.Pets.Add(agostino);
+                    db.Pets.Add(cuoricino);
+                    db.Pets.Add(wailord);
 
                     db.SaveChanges();
                 }
@@ -148,8 +203,38 @@ namespace bwFinaleVeterinaria
                         Price = price
                     };
 
+                    var admission3 = new RescueAdmission()
+                    {
+                        Id = 3,
+                        AdmissionDate = new DateTime(2020, 12, 08, 11, 14, 07),
+                        PetImageUrl = "https://www.repstatic.it/content/nazionale/img/2020/06/16/201320950-49cc995c-45bf-4fed-8d74-6f76a0b4d421.jpg",
+                        PetId = 6,
+                        Price = price
+                    };
+
+                    var admission4 = new RescueAdmission()
+                    {
+                        Id = 4,
+                        AdmissionDate = new DateTime(2021, 08, 08, 11, 14, 07),
+                        PetImageUrl = "https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg",
+                        PetId = 7,
+                        Price = price
+                    };
+
+                    var admission5 = new RescueAdmission()
+                    {
+                        Id = 5,
+                        AdmissionDate = new DateTime(2020, 02, 08, 11, 14, 07),
+                        PetImageUrl = "https://www.focusjunior.it/content/uploads/2019/05/balena.jpeg",
+                        PetId = 8,
+                        Price = price
+                    };
+
                     db.RescueAdmissions.Add(admission1);
                     db.RescueAdmissions.Add(admission2);
+                    db.RescueAdmissions.Add(admission3);
+                    db.RescueAdmissions.Add(admission4);
+                    db.RescueAdmissions.Add(admission5);
 
                     db.SaveChanges();
                 }
@@ -184,9 +269,29 @@ namespace bwFinaleVeterinaria
                         PetId = 2
                     };
 
+                    var exam4 = new Examination()
+                    {
+                        Id = 4,
+                        ExaminationDate = new DateTime(2021, 09, 03),
+                        ObjectiveExamimation = "TROPPO CARINO",
+                        TreatmentDescription = "Consiglio vivamente coccole e bacini",
+                        PetId = 7
+                    };
+
+                    var exam5 = new Examination()
+                    {
+                        Id = 5,
+                        ExaminationDate = new DateTime(2023, 01, 23),
+                        ObjectiveExamimation = "Respirazione cattiva",
+                        TreatmentDescription = "Prendere tanto ossigeno ed aerosol per polmoni forti",
+                        PetId = 8
+                    };
+
                     db.Examinations.Add(exam1);
                     db.Examinations.Add(exam2);
                     db.Examinations.Add(exam3);
+                    db.Examinations.Add(exam4);
+                    db.Examinations.Add(exam5);
 
                     db.SaveChanges();
                 }
@@ -199,7 +304,7 @@ namespace bwFinaleVeterinaria
                         Id = 1,
                         Name = "Pfizer",
                         Email = "pfizer@vaccins.com",
-                        Address = "Via del Golfo, 11, Londra (LO)"
+                        Address = "Via del Golfo 11, Londra (LO)"
                     };
 
                     var mimmoModem = new Company()
@@ -207,7 +312,7 @@ namespace bwFinaleVeterinaria
                         Id = 2,
                         Name = "Mimmo Modem SRL",
                         Email = "mimmomodem@mail.com",
-                        Address = "Via dei Meme, 69, Bergam de Ota (BG)"
+                        Address = "Via dei Meme 69, Bergam de Ota (BG)"
                     };
 
                     var chiesi = new Company()
@@ -215,12 +320,30 @@ namespace bwFinaleVeterinaria
                         Id = 3,
                         Name = "Chiesi",
                         Email = "chiesi@mail.com",
-                        Address = "via del golfino, 13, Parma (PR)"
+                        Address = "via del golfino 13, Parma (PR)"
+                    };
+
+                    var abelSRL = new Company()
+                    {
+                        Id = 4,
+                        Name = "Abel Sassu SRL",
+                        Email = "calabria@mail.com",
+                        Address = "via della nduja 104, Reggio Calabria (RC)"
+                    };
+
+                    var giuseppeSRL = new Company()
+                    {
+                        Id = 5,
+                        Name = "Giuseppe Conza SRL",
+                        Email = "napoli@mail.com",
+                        Address = "via della pizza 104, Napoli (NA)"
                     };
 
                     db.Companies.Add(pfizer);
                     db.Companies.Add(mimmoModem);
                     db.Companies.Add(chiesi);
+                    db.Companies.Add(abelSRL);
+                    db.Companies.Add(giuseppeSRL);
 
                     db.SaveChanges();
                 }
@@ -265,10 +388,60 @@ namespace bwFinaleVeterinaria
                         CompanyId = 2,
                     };
 
+                    var ossigeno = new Product()
+                    {
+                        Id = 5,
+                        Name = "Ossigeno",
+                        Type = "Farmaco",
+                        PossibleUses = "Per respirare bene",
+                        CompanyId = 5,
+                    };
+
+                    var coccole = new Product()
+                    {
+                        Id = 6,
+                        Name = "Coccole",
+                        Type = "Farmaco",
+                        PossibleUses = "PER DARE TANTO AMORE <3",
+                        CompanyId = 5,
+                    };
+
+                    var nduja = new Product()
+                    {
+                        Id = 7,
+                        Name = "Nduja",
+                        Type = "Alimentare",
+                        PossibleUses = "Per pizzicare intestino",
+                        CompanyId = 4,
+                    };
+
+                    var pasta = new Product()
+                    {
+                        Id = 8,
+                        Name = "Pasta e pummarola",
+                        Type = "Alimentare",
+                        PossibleUses = "Per rendere l'animale un vero italiano",
+                        CompanyId = 4,
+                    };
+
+                    var bomba = new Product()
+                    {
+                        Id = 9,
+                        Name = "Bomba Atomica",
+                        Type = "Alimentare",
+                        PossibleUses = "Per combattere forti virus",
+                        CompanyId = 4,
+                    };
+
                     db.Products.Add(viagra);
                     db.Products.Add(paracetamolo);
                     db.Products.Add(crocchetteBronte);
                     db.Products.Add(crocchetteGelato);
+                    db.Products.Add(ossigeno);
+                    db.Products.Add(coccole);
+                    db.Products.Add(nduja);
+                    db.Products.Add(pasta);
+                    db.Products.Add(bomba);
 
                     db.SaveChanges();
                 }
@@ -294,8 +467,59 @@ namespace bwFinaleVeterinaria
                         SaleDate = new DateTime(2024, 04, 18),
                     };
 
+                    var sale3 = new Sale()
+                    {
+                        Id = 3,
+                        ExaminationId = 4,
+                        ProductId = 6,
+                        OwnerId = 3,
+                        SaleDate = new DateTime(2024, 04, 18),
+                    };
+
+                    var sale4 = new Sale()
+                    {
+                        Id = 4,
+                        ExaminationId = 5,
+                        ProductId = 5,
+                        OwnerId = 4,
+                        SaleDate = new DateTime(2024, 04, 22),
+                    };
+
+                    var sale5 = new Sale()
+                    {
+                        Id = 5,
+                        ExaminationId = 1,
+                        ProductId = 8,
+                        OwnerId = 5,
+                        SaleDate = new DateTime(2024, 02, 08),
+                    };
+
+                    var sale6 = new Sale()
+                    {
+                        Id = 6,
+                        ExaminationId = 1,
+                        ProductId = 9,
+                        OwnerId = 5,
+                        SaleDate = new DateTime(2024, 12, 02),
+                    };
+
+                    var sale7 = new Sale()
+                    {
+                        Id = 7,
+                        ExaminationId = 1,
+                        ProductId = 7,
+                        OwnerId = 5,
+                        SaleDate = new DateTime(2024, 07, 17),
+                    };
+
+
                     db.Sales.Add(sale1);
                     db.Sales.Add(sale2);
+                    db.Sales.Add(sale3);
+                    db.Sales.Add(sale4);
+                    db.Sales.Add(sale5);
+                    db.Sales.Add(sale6);
+                    db.Sales.Add(sale7);
 
                     db.SaveChanges();
                 }
@@ -363,10 +587,55 @@ namespace bwFinaleVeterinaria
                         ProductId = 4,
                     };
 
+                    var cabinet5 = new Cabinet()
+                    {
+                        Id = 5,
+                        NumericCode = "A",
+                        DrawerId = 3,
+                        ProductId = 5,
+                    };
+
+                    var cabinet6 = new Cabinet()
+                    {
+                        Id = 6,
+                        NumericCode = "B",
+                        DrawerId = 3,
+                        ProductId = 6,
+                    };
+
+                    var cabinet7 = new Cabinet()
+                    {
+                        Id = 7,
+                        NumericCode = "A",
+                        DrawerId = 1,
+                        ProductId = 7,
+                    };
+
+                    var cabinet8 = new Cabinet()
+                    {
+                        Id = 8,
+                        NumericCode = "B",
+                        DrawerId = 1,
+                        ProductId = 8,
+                    };
+
+                    var cabinet9 = new Cabinet()
+                    {
+                        Id = 9,
+                        NumericCode = "B",
+                        DrawerId = 2,
+                        ProductId = 9,
+                    };
+
                     db.Cabinets.Add(cabinet1);
                     db.Cabinets.Add(cabinet2);
                     db.Cabinets.Add(cabinet3);
                     db.Cabinets.Add(cabinet4);
+                    db.Cabinets.Add(cabinet5);
+                    db.Cabinets.Add(cabinet6);
+                    db.Cabinets.Add(cabinet7);
+                    db.Cabinets.Add(cabinet8);
+                    db.Cabinets.Add(cabinet9);
 
                     db.SaveChanges();
                 }
@@ -395,6 +664,7 @@ namespace bwFinaleVeterinaria
                 // EMPLOYEES TABLE
                 if (!db.Employees.Any())
                 {
+                    //DOTTORI
                     var employee1 = new Employee()
                     {
                         Id = 1,
@@ -406,14 +676,23 @@ namespace bwFinaleVeterinaria
                     var employee2 = new Employee()
                     {
                         Id = 2,
+                        Username = "Peppino",
+                        Password = "123",
+                        RoleId = 1
+                    };
+
+                    //FARMACISTI
+                    var employee3 = new Employee()
+                    {
+                        Id = 3,
                         Username = "Rezzonico",
                         Password = "bruttoX3",
                         RoleId = 2
                     };
 
-                    var employee3 = new Employee()
+                    var employee4 = new Employee()
                     {
-                        Id = 3,
+                        Id = 4,
                         Username = "Patricia",
                         Password = "123",
                         RoleId = 2
@@ -422,6 +701,7 @@ namespace bwFinaleVeterinaria
                     db.Employees.Add(employee1);
                     db.Employees.Add(employee2);
                     db.Employees.Add(employee3);
+                    db.Employees.Add(employee4);
 
                     db.SaveChanges();
                 }
