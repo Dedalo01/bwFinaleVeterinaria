@@ -33,7 +33,7 @@
         <div class="form-group fix-margin-bottom">
             <h2>Aggiungi Animale</h2>
 
-            <select name="ownerId" id="ownerId">
+            <select name="ownerId" id="ownerId" class="form-control">
                 <option value="-1">--- Seleziona Proprietario ---</option>
                 @foreach (var owner in TempData["owners"] as List<bwFinaleVeterinaria.Models.Owner>)
                 {
@@ -43,7 +43,7 @@
 
             <div>
                 <p>Il proprietario non è presente nel Database? </p>
-                <a href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
+                <a class="btn light-btn" href="@Url.Action("AddOwner")">Aggiungi Proprietario</a>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
             </div>
 
             <div>
-            <button class="btn" type="submit">Aggiungi Animale</button>
+            <button class="btn light-btn" type="submit">Aggiungi Animale</button>
             <a href="@Url.Action("Index")" class="btn">Torna Indietro</a>
             </div>
         </div>
@@ -95,46 +95,18 @@
 
 @section styles {
     <style>
+
+        a {
+            color: var(--dAzure);
+        }
+
         /* SELECT */
         #ownerId {
             min-width: 400px;
-            position: relative;
-            width: contain;
+            text-align:center;
+            padding: 10px 25px;
         }
-
-        select {
-            appearance: none;
-            width: 100%;
-            font-size: 1.1rem;
-            padding: 0.675em 1em 0.675em 1em;
-            background-color: #fff;
-            border: 1px solid #caced1;
-            border-radius: 10px;
-            color: #000;
-            cursor: pointer;
-        }
-
-        #ownerId::before, #ownerId::after {
-            --size: 0.3rem;
-            position: absolute;
-            content: "";
-            right: 1rem;
-            pointer-events: none;
-        }
-
-        #ownerId::before {
-            border-left: var(--size) solid transparent;
-            border-right: var(--size) solid transparent;
-            border-bottom: var(--size) solid black;
-            top: 40%;
-        }
-
-        #ownerId::after {
-            border-left: var(--size) solid transparent;
-            border-right: var(--size) solid transparent;
-            border-top: var(--size) solid black;
-            top: 55%;
-        }
+      
 
         /* FORM */
 
@@ -162,14 +134,6 @@
         .right-group input {
             width: 300px;
         }
-
-     /*   .main-content .form-group {
-            display:flex;
-            align-content:center;
-            justify-content:center;
-            flex-direction:column;
-            text-align:center;
-        }*/
 
         .main-content label {
             font-weight:bold;
@@ -202,8 +166,19 @@
             color: white;
         }
 
-        .main-content form .btn:hover {
-            background-color: var(--azure);
+        .form-control:focus {
+            border-color: var(--azure) !important;
+            box-shadow: 0 0 0 0.2rem var(--azure) !important;
         }
+
+        .main-content .light-btn {
+            background-color: var(--azure) !important;
+        }
+
+            .main-content .btn:hover, .main-content .light-btn:hover {
+                background-color: var(--btnHoverDoctor) !important;
+                color: white;
+            }
+
     </style>
 }
