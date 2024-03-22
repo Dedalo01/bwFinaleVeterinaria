@@ -50,7 +50,6 @@
 </div>
 
 <div id="searchResultsContainer">
-    <!-- Search results will be displayed here -->
 </div>
 
 <div class="buttonsCointainer">
@@ -60,25 +59,33 @@
 @section scripts {
     <script>
         function showProductSearch() {
-            $('#productSearchContainer').show();
-            $('#fiscalCodeSearchContainer').hide();
-            $('#dateSearchContainer').hide();
-        }
+    hideSearchResults();
+    $('#searchResultsContainer').empty();
+    $('#productSearchContainer').show();
+    $('#fiscalCodeSearchContainer').hide();
+    $('#dateSearchContainer').hide();
+}
 
-        function showFiscalCodeSearch() {
-            $('#productSearchContainer').hide();
-            $('#fiscalCodeSearchContainer').show();
-            $('#dateSearchContainer').hide();
-        }
+function showFiscalCodeSearch() {
+    hideSearchResults();
+    $('#searchResultsContainer').empty();
+    $('#productSearchContainer').hide();
+    $('#fiscalCodeSearchContainer').show();
+    $('#dateSearchContainer').hide();
+}
 
-        function showDateSearch() {
-            $('#productSearchContainer').hide();
-            $('#fiscalCodeSearchContainer').hide();
-            $('#dateSearchContainer').show();
-        }
-
+function showDateSearch() {
+    hideSearchResults();
+    $('#searchResultsContainer').empty();
+    $('#productSearchContainer').hide();
+    $('#fiscalCodeSearchContainer').hide();
+    $('#dateSearchContainer').show();
+}
+    function hideSearchResults() {
+    $('#searchResultsContainer').empty();
+}
         $(document).ready(function () {
-            showProductSearch(); // Mostra automaticamente la ricerca per prodotto quando la pagina viene caricata
+            showProductSearch();
 
             $('#productSearchForm').submit(function (e) {
                 e.preventDefault();
@@ -129,6 +136,4 @@
             });
         });
     </script>
-
-
 }
